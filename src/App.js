@@ -23,7 +23,7 @@ class App extends React.Component {
               items: [...storedItems]
           });
       }
-      setTimeout(() => console.log(this.state), 500);
+      // setTimeout(() => console.log(this.state), 500);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -32,7 +32,7 @@ class App extends React.Component {
           this.setState({
               items: [...storedItems]
           });
-          setTimeout(() => console.log(this.state), 500);
+          // setTimeout(() => console.log(this.state), 500);
       }
   }
 
@@ -73,7 +73,6 @@ class App extends React.Component {
           </Router>
       );
   }
-
 }
 
 export default App;

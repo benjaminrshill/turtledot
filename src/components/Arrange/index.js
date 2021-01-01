@@ -1,13 +1,50 @@
 import React from 'react';
 import './arrange.css';
+import Row from "../Table/Row";
 
 class Arrange extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-
+            adding: false,
+            id: '77',
+            date: '2020/12/28',
+            storedWeeks: [
+                ['9b7ef609-bd19-4bac-9e10-9ffaadcdf80f', [0,0,1,0,0,1,0]],
+                ['ab2f37b0-c271-4f09-b667-7d19609182aa', [0,1,0,0,1,0,0]],
+                ['9693fe04-48a9-46a9-adb5-7f4c992a23c9', [0,1,1,1,1,1,0]]
+            ],
+            items: []
         };
+    }
+
+    componentDidMount() {
+        this.createWeek();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps !== this.props) {
+            this.createWeek();
+        }
+    }
+
+    createWeek = () => {
+        let weekItems = [];
+        this.state.storedWeeks.forEach(week => {
+            let item = this.props.items.find(item => item.id === week[0]);
+            weekItems.push([item, week[1]]);
+        });
+        this.setState({
+            items: [...weekItems]
+        });
+        console.log(this.state);
+    }
+
+    listAdd = () => {
+        this.setState({
+            adding: true
+        });
     }
 
     render() {
@@ -18,7 +55,7 @@ class Arrange extends React.Component {
                         <thead>
                         <tr>
                             <td className="week-date left-column">
-                                date
+                                {this.state.date}
                             </td>
                             <td className="week-date">
 
@@ -47,237 +84,51 @@ class Arrange extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        <tr className="color0">
-                            <td className="week-item left-column">
-                                SQUAT
-                            </td>
-                            <td className="week-item-number">
-                                2
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot open"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot open"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color0">
-                            <td className="week-item left-column">
-                                PUSH
-                            </td>
-                            <td className="week-item-number">
-                                2
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color0">
-                            <td className="week-item left-column">
-                                PULL
-                            </td>
-                            <td className="week-item-number">
-                                2
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color1">
-                            <td className="week-item left-column">
-                                MEDITATION
-                            </td>
-                            <td className="week-item-number">
-                                5
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color2">
-                            <td className="week-item left-column">
-                                WALKING
-                            </td>
-                            <td className="week-item-number">
-                                5
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color4">
-                            <td className="week-item left-column">
-                                HANDSTAND
-                            </td>
-                            <td className="week-item-number">
-                                3
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
-                        <tr className="color7">
-                            <td className="week-item left-column">
-                                JUGGLING
-                            </td>
-                            <td className="week-item-number">
-                                2
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot bordered rounded"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                            <td className="week-spots">
-                                <div className="spot"></div>
-                            </td>
-                        </tr>
+                        {this.state.items.map(item =>
+                            <Row
+                                key={item[0].id}
+                                id={item[0].id}
+                                text={item[0].text}
+                                number={item[0].number}
+                                color={item[0].color}
+                                todo={item[1]}
+                                // text={item.text}
+                                // number={item.number}
+                                // color={item.color}
+                            />
+                        )}
                         </tbody>
                     </table>
                 </section>
-
-                <div className="edit-box">
-                    <div className="items-list">
-                        <button className="items-list-item color3">
-                            JOGGING
-                        </button>
-                        <button className="items-list-item color9">
-                            STUDY CHINESE
-                        </button>
-                        <button className="items-list-item color9">
-                            STUDY FRENCH
-                        </button>
-                        <button className="items-list-item color4">
-                            FLOORWORK
-                        </button>
+                {this.state.adding ?
+                    <div className="edit-box">
+                        <div className="items-list">
+                            <button className="items-list-item color3">
+                                JOGGING
+                            </button>
+                            <button className="items-list-item color9">
+                                STUDY CHINESE
+                            </button>
+                            <button className="items-list-item color9">
+                                STUDY FRENCH
+                            </button>
+                            <button className="items-list-item color4">
+                                FLOORWORK
+                            </button>
+                        </div>
+                        <div className="edit-box-buttons">
+                            <button className="edit-complete">
+                                &#10003;
+                            </button>
+                        </div>
                     </div>
-                    <div className="edit-box-buttons">
-                        <button className="edit-complete">
-                            &#10003;
-                        </button>
-                    </div>
-                </div>
-                <button className="plus-sign add">
-                    +
-                </button>
+                    :
+                    <button
+                        onClick={this.listAdd}
+                        className="plus-sign add">
+                        +
+                    </button>
+                }
             </main>
         );
     }

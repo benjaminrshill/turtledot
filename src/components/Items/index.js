@@ -50,10 +50,12 @@ class Items extends React.Component {
     }
 
     deleteItem = (event) => {
-        let storedItems = JSON.parse(localStorage.getItem('items'));
-        let filtered = storedItems.filter(item => item.id !== event.target.value);
-        localStorage.setItem('items', JSON.stringify(filtered));
-        this.props.onUpdateState(filtered);
+        if (window.confirm('Really delete?')) {
+            let storedItems = JSON.parse(localStorage.getItem('items'));
+            let filtered = storedItems.filter(item => item.id !== event.target.value);
+            localStorage.setItem('items', JSON.stringify(filtered));
+            this.props.onUpdateState(filtered);
+        }
     }
 
     render() {

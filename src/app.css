@@ -47,7 +47,6 @@ button.edit-complete {
 table {
   width: 100%;
   margin: 0 0 2rem 0;
-  font-size: 2rem;
   border-collapse: collapse;
 }
 
@@ -56,6 +55,7 @@ tr {
 }
 
 td {
+  font-size: 3rem;
   border: var(--main-border);
 }
 
