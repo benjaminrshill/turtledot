@@ -1,0 +1,83 @@
+import React from 'react';
+
+class NewItem extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            text: '',
+            number: 1,
+            color: 'color0'
+        };
+    }
+
+    handleInput = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+
+    setColor = (event) => {
+        this.setState({
+            color: event.target.id
+        });
+    }
+
+    addItem = () => {
+        if (this.state.text.length > 0) this.props.onAddItem({...this.state});
+    }
+
+    render() {
+        return (
+            <section>
+                <div className='item'>
+                    <input
+                        type='text'
+                        name='text'
+                        value={this.state.text}
+                        onChange={this.handleInput}
+                        className='text'
+                    />
+                    <input
+                        type='number'
+                        name='number'
+                        min='1'
+                        max='35'
+                        value={this.state.number}
+                        onChange={this.handleInput}
+                        className='number'
+                    />
+                    <button
+                        className={'color ' + this.state.color}>
+                    </button>
+                    <button className='plus-sign delete'>
+                        +
+                    </button>
+                </div>
+                <div className='edit-box'>
+                    <div className='palette'>
+                        {this.props.colors.map(color =>
+                            <div
+                                key={color}
+                                id={color}
+                                className={'palette-square ' + color}
+                                onClick={this.setColor}>
+                            </div>
+                        )}
+                    </div>
+                    <div className='edit-box-buttons'>
+                        <button
+                            onClick={this.addItem}
+                            className='edit-complete'>
+                            &#10003;
+                        </button>
+                    </div>
+                </div>
+            </section>
+        );
+    }
+}
+
+export default NewItem;

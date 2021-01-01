@@ -1,0 +1,17 @@
+@import '../../colors.css';
+
+header {
+    text-align: center;
+}
+
+.logo {
+    margin: 1rem;
+    width: 10rem;
+}
+
+h1 {
+    margin: 3rem;
+    font-size: 4rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}

@@ -1,0 +1,98 @@
+main {
+  margin: 0 0 12vh 0;
+}
+
+button {
+  width: 5rem;
+  height: 5rem;
+  font-family: var(--main-font);
+  font-weight: 400;
+  font-size: 3rem;
+  padding: 0;
+  background: var(--high-color);
+  border: var(--main-border);
+  border-radius: 100%;
+}
+
+button.plus-sign {
+  font-size: 5rem;
+  font-weight: 300;
+  line-height: 0;
+}
+
+button.delete {
+  transform: rotate(-45deg);
+}
+
+.done {
+  background: var(--line-color);
+}
+
+.edit-box {
+  width: 97vw;
+  margin: 0 auto 2rem auto;
+  background: var(--base-color);
+  border: var(--main-border);
+}
+
+.edit-box-buttons {
+  height: 7rem;
+}
+
+button.edit-complete {
+  float: right;
+  margin: 1rem;
+}
+
+table {
+  width: 100%;
+  margin: 0 0 2rem 0;
+  font-size: 2rem;
+  border-collapse: collapse;
+}
+
+tr {
+  height: 5rem;
+}
+
+td {
+  border: var(--main-border);
+}
+
+.week-date {
+  border: none;
+}
+
+.day {
+  width: 5rem;
+  background: var(--high-color);
+}
+
+.left-column {
+  text-align: left;
+  padding: 0 0 0 10px;
+}
+
+.week-item-number {
+  width: 5rem;
+}
+
+.week-spots {
+  background: rgba(255,255,255,0.5);
+}
+
+.spot {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 100%;
+}
+
+.spot.open {
+  border: var(--main-border);
+  background: var(--high-color);
+}
+
+.spot.closed {
+  border: var(--main-border);
+  background: var(--line-color);
+}
