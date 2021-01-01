@@ -63,7 +63,7 @@ class UpdateItem extends React.Component {
                         className={'color ' + this.state.color}>
                     </button>
                     <button
-                        onClick={this.props.onCancelAddItem}
+                        onClick={this.props.onCancelUpdate}
                         className='plus-sign delete'>
                         +
                     </button>

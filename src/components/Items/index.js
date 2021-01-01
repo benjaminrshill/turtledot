@@ -19,7 +19,7 @@ class Items extends React.Component {
         });
     }
 
-    cancelAddItem = () => {
+    cancelNewItem = () => {
         this.setState({
             adding: false
         });
@@ -75,7 +75,7 @@ class Items extends React.Component {
                     <UpdateItem
                         colors={this.props.colors}
                         onUpdateItem={this.addItem}
-                        onCancelAddItem={this.cancelAddItem}
+                        onCancelUpdate={this.cancelNewItem}
                     />
                     :
                     <button

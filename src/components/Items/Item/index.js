@@ -16,6 +16,12 @@ class Item extends React.Component {
         });
     }
 
+    cancelEdit = () => {
+        this.setState({
+            editing: false
+        });
+    }
+
     editItem = (data) => {
         let storedItems = JSON.parse(localStorage.getItem('items'));
         let edited = storedItems.findIndex(item => item.id === data.id);
@@ -39,6 +45,7 @@ class Item extends React.Component {
                     color={this.props.color}
                     colors={this.props.colors}
                     onUpdateItem={this.editItem}
+                    onCancelUpdate={this.cancelEdit}
                 />
                 :
                 <div className='item'>
