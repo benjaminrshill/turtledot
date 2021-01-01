@@ -42,7 +42,7 @@ class App extends React.Component {
       });
   }
 
-  removeItemFromState = (items) => {
+  updateState = (items) => {
       this.setState({
          items: [...items]
       });
@@ -58,7 +58,7 @@ class App extends React.Component {
                           items={this.state.items}
                           colors={this.state.colors}
                           onNewItemToState={this.newItemToState}
-                          onRemoveItemFromState={this.removeItemFromState}
+                          onUpdateState={this.updateState}
                       />
                   </Route>
                   <Route path='/'>

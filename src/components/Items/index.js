@@ -1,7 +1,7 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import Item from "../Item";
-import NewItem from "../NewItem";
+import Item from './Item';
+import UpdateItem from './UpdateItem';
 import './items.css';
 
 class Items extends React.Component {
@@ -16,6 +16,12 @@ class Items extends React.Component {
     newItem = () => {
         this.setState({
            adding: true
+        });
+    }
+
+    cancelAddItem = () => {
+        this.setState({
+            adding: false
         });
     }
 
@@ -39,11 +45,15 @@ class Items extends React.Component {
         this.props.onNewItemToState(item);
     }
 
+    editItemInState = (edited) => {
+        this.props.onUpdateState(edited);
+    }
+
     deleteItem = (event) => {
         let storedItems = JSON.parse(localStorage.getItem('items'));
         let filtered = storedItems.filter(item => item.id !== event.target.value);
         localStorage.setItem('items', JSON.stringify(filtered));
-        this.props.onRemoveItemFromState(filtered);
+        this.props.onUpdateState(filtered);
     }
 
     render() {
@@ -56,13 +66,16 @@ class Items extends React.Component {
                         text={item.text}
                         number={item.number}
                         color={item.color}
+                        colors={this.props.colors}
+                        onEditIteminState={this.editItemInState}
                         onDeleteItem={this.deleteItem}
                     />
                 )}
                 {this.state.adding ?
-                    <NewItem
+                    <UpdateItem
                         colors={this.props.colors}
-                        onAddItem={this.addItem}
+                        onUpdateItem={this.addItem}
+                        onCancelAddItem={this.cancelAddItem}
                     />
                     :
                     <button

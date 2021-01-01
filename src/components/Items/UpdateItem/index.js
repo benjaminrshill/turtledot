@@ -1,14 +1,24 @@
 import React from 'react';
 
-class NewItem extends React.Component {
+class UpdateItem extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            id: '',
             text: '',
             number: 1,
             color: 'color0'
         };
+    }
+
+    componentDidMount() {
+        if (this.props.id) this.setState({
+            id: this.props.id,
+            text: this.props.text,
+            number: this.props.number,
+            color: this.props.color
+        });
     }
 
     handleInput = (event) => {
@@ -25,8 +35,8 @@ class NewItem extends React.Component {
         });
     }
 
-    addItem = () => {
-        if (this.state.text.length > 0) this.props.onAddItem({...this.state});
+    updateItem = () => {
+        if (this.state.text.length > 0) this.props.onUpdateItem({...this.state});
     }
 
     render() {
@@ -52,7 +62,9 @@ class NewItem extends React.Component {
                     <button
                         className={'color ' + this.state.color}>
                     </button>
-                    <button className='plus-sign delete'>
+                    <button
+                        onClick={this.props.onCancelAddItem}
+                        className='plus-sign delete'>
                         +
                     </button>
                 </div>
@@ -69,7 +81,7 @@ class NewItem extends React.Component {
                     </div>
                     <div className='edit-box-buttons'>
                         <button
-                            onClick={this.addItem}
+                            onClick={this.updateItem}
                             className='edit-complete'>
                             &#10003;
                         </button>
@@ -80,4 +92,4 @@ class NewItem extends React.Component {
     }
 }
 
-export default NewItem;
+export default UpdateItem;
