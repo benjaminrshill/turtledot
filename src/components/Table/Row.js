@@ -12,9 +12,12 @@ export default function Row(props) {
             {props.todo.map((day, i) =>
                 <td
                     key={props.id + i}
+                    data-id={props.id}
+                    data-day={i}
+                    onClick={props.onChangeDay}
                     className='week-spots'>
-                    <div className={'spot' + (day > 0 ? ' open' : '')}>
-
+                    <div
+                        className={'spot' + (day > 0 ? ' open' : '')}>
                     </div>
                 </td>
             )}

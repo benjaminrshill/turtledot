@@ -8,37 +8,29 @@ class Arrange extends React.Component {
         super(props);
         this.state = {
             adding: false,
-            id: '77',
-            date: '2020/12/28',
-            storedWeeks: [
-                ['9b7ef609-bd19-4bac-9e10-9ffaadcdf80f', [0,0,1,0,0,1,0]],
-                ['ab2f37b0-c271-4f09-b667-7d19609182aa', [0,1,0,0,1,0,0]],
-                ['9693fe04-48a9-46a9-adb5-7f4c992a23c9', [0,1,1,1,1,1,0]]
-            ],
-            items: []
+            itemWeeks: []
         };
     }
 
     componentDidMount() {
-        this.createWeek();
+        setTimeout(() => this.createThisWeek(), 50);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props) {
-            this.createWeek();
+            this.createThisWeek();
         }
     }
 
-    createWeek = () => {
+    createThisWeek = () => {
         let weekItems = [];
-        this.state.storedWeeks.forEach(week => {
+        this.props.weeks[0].items.forEach(week => {
             let item = this.props.items.find(item => item.id === week[0]);
             weekItems.push([item, week[1]]);
         });
         this.setState({
-            items: [...weekItems]
+            itemWeeks: [...weekItems]
         });
-        console.log(this.state);
     }
 
     listAdd = () => {
@@ -55,7 +47,7 @@ class Arrange extends React.Component {
                         <thead>
                         <tr>
                             <td className="week-date left-column">
-                                {this.state.date}
+                                date
                             </td>
                             <td className="week-date">
 
@@ -84,7 +76,7 @@ class Arrange extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.items.map(item =>
+                        {this.state.itemWeeks.map(item =>
                             <Row
                                 key={item[0].id}
                                 id={item[0].id}
@@ -92,9 +84,7 @@ class Arrange extends React.Component {
                                 number={item[0].number}
                                 color={item[0].color}
                                 todo={item[1]}
-                                // text={item.text}
-                                // number={item.number}
-                                // color={item.color}
+                                onChangeDay={this.props.onChangeDay}
                             />
                         )}
                         </tbody>
