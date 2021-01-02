@@ -53,6 +53,7 @@ class App extends React.Component {
   getItems = () => {
       if (localStorage.getItem('items')) {
           const storedItems = JSON.parse(localStorage.getItem('items'));
+          storedItems.sort((a, b) => (a.color > b.color) ? 1 : -1);
           this.setState({
               items: [...storedItems]
           });
