@@ -1,6 +1,7 @@
 import React from 'react';
 
 export default function Row(props) {
+    const currentNumber = props.todo.reduce((a, b) => a + b, 0);
     return (
         <tr className={props.color}>
             <td
@@ -11,7 +12,7 @@ export default function Row(props) {
                 className='week-item left-column'>
                 {props.text}
             </td>
-            <td className='week-item-number'>
+            <td className={'week-item-number' + (currentNumber !== +props.number ? ' week-number-alert' : '')}>
                 {props.number}
             </td>
             {props.todo.map((day, i) =>

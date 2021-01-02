@@ -19,3 +19,7 @@
     border-bottom: var(--main-border);
     border-radius: 0;
 }
+
+.week-number-alert {
+    background: red;
+}

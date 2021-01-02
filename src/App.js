@@ -28,7 +28,6 @@ class App extends React.Component {
       this.getItems();
       this.getWeeks();
       this.getThisWeekBeginning();
-      setTimeout(() => console.log(this.state.weeks), 1000);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
