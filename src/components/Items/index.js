@@ -61,6 +61,9 @@ class Items extends React.Component {
     render() {
         return (
             <main id='items'>
+                <h1>
+                    Items
+                </h1>
                 {this.props.items.map(item =>
                     <Item
                         key={item.id}

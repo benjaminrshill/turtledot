@@ -67,6 +67,14 @@ class App extends React.Component {
       });
   }
 
+  addItemToWeek = (event) => {
+      let newWeekItems = [...this.state.weeks];
+      newWeekItems[0].items.push([event.target.id, [0,0,0,0,0,0,0]]);
+      this.setState({
+          weeks: newWeekItems
+      });
+  }
+
   render() {
       return (
           <Router>
@@ -86,6 +94,7 @@ class App extends React.Component {
                           weeks={this.state.weeks}
                           colors={this.state.colors}
                           onChangeDay={this.changeDay}
+                          onAddItemToWeek={this.addItemToWeek}
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
