@@ -19,7 +19,8 @@ class App extends React.Component {
               }
           ],
           thisWeekBeginning: '',
-          colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9']
+          colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'],
+          days: ['M','T','W','T','F','S','S']
       }
   }
 
@@ -27,6 +28,7 @@ class App extends React.Component {
       this.getItems();
       this.getWeeks();
       this.getThisWeekBeginning();
+      setTimeout(() => console.log(this.state.weeks), 1000);
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -91,10 +93,29 @@ class App extends React.Component {
   }
 
   addItemToWeek = (id) => {
-      let newWeekItems = [...this.state.weeks];
-      newWeekItems[0].items.push([id, [0,0,0,0,0,0,0]]);
+      let weeks;
+      if (this.state.weeks[0].items !== undefined) {
+          weeks = [...this.state.weeks];
+          weeks[0].items.push([id, [0,0,0,0,0,0,0]]);
+      } else {
+          weeks = [
+              {
+                  date: this.state.thisWeekBeginning,
+                  items: [[id, [0,0,0,0,0,0,0]]]
+              }
+          ]
+      }
       this.setState({
-          weeks: [...newWeekItems]
+          weeks: [...weeks]
+      });
+  }
+
+  removeItemFromWeek = (id) => {
+      let weeks = [...this.state.weeks];
+      let newWeekItems = weeks[0].items.filter(week => week[0] !== id);
+      weeks[0].items = [...newWeekItems];
+      this.setState({
+          weeks: [...weeks]
       });
   }
 
@@ -117,8 +138,10 @@ class App extends React.Component {
                           weeks={this.state.weeks}
                           colors={this.state.colors}
                           thisWeekBeginning={this.state.thisWeekBeginning}
+                          days={this.state.days}
                           onChangeDay={this.changeDayInState}
                           onAddItemToWeek={this.addItemToWeek}
+                          onRemoveItemFromWeek={this.removeItemFromWeek}
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>

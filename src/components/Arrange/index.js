@@ -17,7 +17,10 @@ class Arrange extends React.Component {
                     todo: [0,0,0,0,0,0,0]
                 }
             ],
-            unselected: []
+            unselected: [],
+            initialX: 0,
+            moveX: 0,
+            finalX: 0
         };
     }
 
@@ -34,12 +37,14 @@ class Arrange extends React.Component {
     createWeek = () => {
         let selected = [];
         let unselected = [...this.props.items];
-        this.props.weeks[0].items.forEach(week => {
-            let index = unselected.findIndex(index => index.id === week[0]);
-            let item = unselected.splice(index, 1);
-            item[0].todo = week[1];
-            selected.push(item[0]);
-        });
+        if (this.props.weeks[0].items !== undefined) {
+            this.props.weeks[0].items.forEach(week => {
+                let index = unselected.findIndex(index => index.id === week[0]);
+                let item = unselected.splice(index, 1);
+                item[0].todo = week[1];
+                selected.push(item[0]);
+            });
+        }
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
@@ -63,6 +68,42 @@ class Arrange extends React.Component {
         storedWeeks.push(week);
         localStorage.setItem('weeks', JSON.stringify(storedWeeks));
         this.props.onAddItemToWeek(event.target.id);
+    }
+
+    onTouchStart = (event) => {
+        event.preventDefault();
+        this.setState({
+            initialX: event.touches[0].clientX
+        });
+    }
+
+    onTouchMove = (event) => {
+        event.preventDefault();
+        if (this.state.initialX === 0) return;
+        this.setState({
+            moveX: event.touches[0].clientX,
+            finalX: this.state.initialX - this.state.moveX
+        });
+    }
+
+    onTouchEnd = (event) => {
+        event.preventDefault();
+        if (this.state.finalX > 100 || this.state.finalX < -100) this.removeItem(event);
+        this.setState({
+            initialX: 0,
+            moveX: 0,
+            finalX: 0
+        });
+    }
+
+    removeItem = (event) => {
+        if (window.confirm('Really remove?')) {
+            let weeks = JSON.parse(localStorage.getItem('weeks'));
+            let newWeekItems = weeks[0].items.filter(keep => keep[0] !== event.currentTarget.id);
+            weeks[0].items = [...newWeekItems];
+            localStorage.setItem('weeks', JSON.stringify(weeks));
+            this.props.onRemoveItemFromWeek(event.currentTarget.id);
+        }
     }
 
     saveDay = (event) => {
@@ -90,27 +131,13 @@ class Arrange extends React.Component {
                             <td className='week-date'>
 
                             </td>
-                            <td className='day'>
-                                M
+                            {this.props.days.map((day, i) =>
+                            <td
+                                key={day + i}
+                                className='day'>
+                                {day}
                             </td>
-                            <td className='day'>
-                                T
-                            </td>
-                            <td className='day'>
-                                W
-                            </td>
-                            <td className='day'>
-                                T
-                            </td>
-                            <td className='day'>
-                                F
-                            </td>
-                            <td className='day'>
-                                S
-                            </td>
-                            <td className='day'>
-                                S
-                            </td>
+                            )}
                         </tr>
                         </thead>
                         <tbody>
@@ -123,6 +150,9 @@ class Arrange extends React.Component {
                                 color={item.color}
                                 todo={item.todo}
                                 onChangeDay={this.saveDay}
+                                onTouchStart={this.onTouchStart}
+                                onTouchMove={this.onTouchMove}
+                                onTouchEnd={this.onTouchEnd}
                             />
                         )}
                         </tbody>

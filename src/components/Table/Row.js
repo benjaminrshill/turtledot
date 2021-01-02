@@ -3,7 +3,12 @@ import React from 'react';
 export default function Row(props) {
     return (
         <tr className={props.color}>
-            <td className='week-item left-column'>
+            <td
+                id={props.id}
+                onTouchStart={props.onTouchStart}
+                onTouchMove={props.onTouchMove}
+                onTouchEnd={props.onTouchEnd}
+                className='week-item left-column'>
                 {props.text}
             </td>
             <td className='week-item-number'>
