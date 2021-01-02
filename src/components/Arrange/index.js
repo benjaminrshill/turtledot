@@ -48,6 +48,7 @@ class Arrange extends React.Component {
             });
         }
         selected.sort((a, b) => (a.color > b.color) ? 1 : -1);
+        unselected.sort((a, b) => (a.color > b.color) ? 1 : -1);
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
