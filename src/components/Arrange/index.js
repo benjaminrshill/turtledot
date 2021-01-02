@@ -1,6 +1,6 @@
 import React from 'react';
-import './arrange.css';
 import Row from '../Table/Row';
+import './arrange.css';
 
 class Arrange extends React.Component {
 
@@ -8,13 +8,20 @@ class Arrange extends React.Component {
         super(props);
         this.state = {
             thisWeekBeginning: '',
-            selected: [],
+            selected: [
+                {
+                    id: '',
+                    text: '',
+                    number: 0,
+                    color: '',
+                    todo: [0,0,0,0,0,0,0]
+                }
+            ],
             unselected: []
         };
     }
 
     componentDidMount() {
-        this.getThisWeekBeginning();
         setTimeout(() => this.createWeek(), 50);
     }
 
@@ -24,40 +31,47 @@ class Arrange extends React.Component {
         }
     }
 
-    getThisWeekBeginning = () => {
-        let newDate = new Date();
-        let day = newDate.getDay();
-        if (day > 1) {
-            newDate.setDate(newDate.getDate() - day + 1);
-        } else if (day === 0) {
-            newDate.setDate(newDate.getDate() - 7);
-        }
-        let week = newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
-        this.setState({
-            thisWeekBeginning: week
-        });
-    }
-
     createWeek = () => {
-        let unselected = [...this.props.items];
         let selected = [];
+        let unselected = [...this.props.items];
         this.props.weeks[0].items.forEach(week => {
             let index = unselected.findIndex(index => index.id === week[0]);
             let item = unselected.splice(index, 1);
             item[0].todo = week[1];
-            selected.push(...item);
+            selected.push(item[0]);
         });
-        console.log(selected);
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
         });
     }
 
-    listAdd = () => {
-        this.setState({
-            adding: true
+    saveWeek = (event) => {
+        let storedWeeks = [];
+        let week = {
+            date: this.props.thisWeekBeginning,
+            items: []
+        };
+        this.state.selected.forEach(item => {
+            week.items.push([item.id, item.todo]);
         });
+        week.items.push([event.target.id, [0,0,0,0,0,0,0]]);
+        if (localStorage.getItem('weeks')) {
+            let oldWeeks = JSON.parse(localStorage.getItem('weeks'));
+            storedWeeks = oldWeeks.filter(old => old.date !== week.date);
+        }
+        storedWeeks.push(week);
+        localStorage.setItem('weeks', JSON.stringify(storedWeeks));
+        this.props.onAddItemToWeek(event.target.id);
+    }
+
+    saveDay = (event) => {
+        let weeks = JSON.parse(localStorage.getItem('weeks'));
+        let wtc = weeks.findIndex(old => old.date === this.props.thisWeekBeginning);
+        let itc = weeks[wtc].items.findIndex(old => old[0] === event.currentTarget.dataset.id);
+        weeks[wtc].items[itc][1][event.currentTarget.dataset.day] = weeks[wtc].items[itc][1][event.currentTarget.dataset.day] > 0 ? 0 : 1;
+        localStorage.setItem('weeks', JSON.stringify(weeks));
+        this.props.onChangeDay(event);
     }
 
     render() {
@@ -71,7 +85,7 @@ class Arrange extends React.Component {
                         <thead>
                         <tr>
                             <td className='week-date left-column'>
-                                {this.state.thisWeekBeginning}
+                                {this.props.thisWeekBeginning}
                             </td>
                             <td className='week-date'>
 
@@ -108,7 +122,7 @@ class Arrange extends React.Component {
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}
-                                onChangeDay={this.props.onChangeDay}
+                                onChangeDay={this.saveDay}
                             />
                         )}
                         </tbody>
@@ -122,7 +136,7 @@ class Arrange extends React.Component {
                                     key={item.id}
                                     id={item.id}
                                     className={'items-list-item ' + item.color}
-                                    onClick={this.props.onAddItemToWeek}>
+                                    onClick={this.saveWeek}>
                                     {item.text}
                                 </button>
                             )}

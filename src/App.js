@@ -14,25 +14,25 @@ class App extends React.Component {
           items: [],
           weeks: [
               {
-                  date: '2020/12/28',
-                  items: [
-                      ['9b7ef609-bd19-4bac-9e10-9ffaadcdf80f', [0,0,1,0,0,1,0]],
-                      ['ab2f37b0-c271-4f09-b667-7d19609182aa', [0,1,0,0,1,0,0]],
-                      ['9693fe04-48a9-46a9-adb5-7f4c992a23c9', [0,1,1,1,1,1,0]]
-                  ]
+                  date: '',
+                  items: []
               }
           ],
+          thisWeekBeginning: '',
           colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9']
       }
   }
 
   componentDidMount() {
       this.getItems();
+      this.getWeeks();
+      this.getThisWeekBeginning();
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
       if (prevProps !== this.props) {
           this.getItems();
+          this.getWeeks();
       }
   }
 
@@ -57,7 +57,30 @@ class App extends React.Component {
       }
   }
 
-  changeDay = (event) => {
+  getWeeks = () => {
+      if (localStorage.getItem('weeks')) {
+          const storedWeeks = JSON.parse(localStorage.getItem('weeks'));
+          this.setState({
+              weeks: [...storedWeeks]
+          });
+      }
+  }
+
+  getThisWeekBeginning = () => {
+      let newDate = new Date();
+      let day = newDate.getDay();
+      if (day > 1) {
+          newDate.setDate(newDate.getDate() - day + 1);
+      } else if (day === 0) {
+          newDate.setDate(newDate.getDate() - 7);
+      }
+      let week = newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
+      this.setState({
+          thisWeekBeginning: week
+      });
+  }
+
+  changeDayInState = (event) => {
       let newDay = [...this.state.weeks];
       let id = newDay[0].items.findIndex(item => item[0] === event.currentTarget.dataset.id);
       let day = event.currentTarget.dataset.day;
@@ -67,11 +90,11 @@ class App extends React.Component {
       });
   }
 
-  addItemToWeek = (event) => {
+  addItemToWeek = (id) => {
       let newWeekItems = [...this.state.weeks];
-      newWeekItems[0].items.push([event.target.id, [0,0,0,0,0,0,0]]);
+      newWeekItems[0].items.push([id, [0,0,0,0,0,0,0]]);
       this.setState({
-          weeks: newWeekItems
+          weeks: [...newWeekItems]
       });
   }
 
@@ -93,7 +116,8 @@ class App extends React.Component {
                           items={this.state.items}
                           weeks={this.state.weeks}
                           colors={this.state.colors}
-                          onChangeDay={this.changeDay}
+                          thisWeekBeginning={this.state.thisWeekBeginning}
+                          onChangeDay={this.changeDayInState}
                           onAddItemToWeek={this.addItemToWeek}
                           onNewItemToState={this.newItemToState}
                       />
