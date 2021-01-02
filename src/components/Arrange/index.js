@@ -39,10 +39,12 @@ class Arrange extends React.Component {
         let unselected = [...this.props.items];
         if (this.props.weeks[0].items !== undefined) {
             this.props.weeks[0].items.forEach(week => {
-                let index = unselected.findIndex(index => index.id === week[0]);
-                let item = unselected.splice(index, 1);
-                item[0].todo = week[1];
-                selected.push(item[0]);
+                if (unselected.find(item => item.id === week[0])) {
+                    let index = unselected.findIndex(index => index.id === week[0]);
+                    let item = unselected.splice(index, 1);
+                    item[0].todo = week[1];
+                    selected.push(item[0]);
+                }
             });
         }
         this.setState({
