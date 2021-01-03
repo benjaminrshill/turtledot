@@ -94,12 +94,10 @@ class App extends React.Component {
           weeks.push(newWeek);
       } else {
           currentWeek.items.push([id, [0,0,0,0,0,0,0]]);
-          console.log('yes week');
       }
       this.setState({
           weeks: [...weeks]
       });
-      setTimeout(() => console.log(this.state), 50);
   }
 
   removeItemFromWeek = (id, week) => {
@@ -112,12 +110,12 @@ class App extends React.Component {
       });
   }
 
-  changeDayInState = (event, week) => {
+  changeDayInState = (event) => {
       let weeks = [...this.state.weeks];
-      let currentWeek = weeks.find(needle => needle.date === week);
-      let id = currentWeek.items.findIndex(item => item[0] === event.currentTarget.dataset.id);
+      let currentWeek = weeks.find(needle => needle.date === event.currentTarget.dataset.week);
+      let item = currentWeek.items.find(item => item[0] === event.currentTarget.dataset.id);
       let day = event.currentTarget.dataset.day;
-      currentWeek.items[id][1][day] = (currentWeek.items[id][1][day] > 0 ? 0 : 1);
+      item[1][day] = (item[1][day] > 0 ? 0 : 1);
       this.setState({
           weeks: [...weeks]
       });

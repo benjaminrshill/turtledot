@@ -109,7 +109,7 @@ class ArrangeWeek extends React.Component {
     }
 
     saveDay = (event) => {
-        this.props.onChangeDay(event, this.state.weekBeginning);
+        this.props.onChangeDay(event);
     }
 
     render() {
@@ -146,7 +146,7 @@ class ArrangeWeek extends React.Component {
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}
-                                thisWeek={false}
+                                weekBeginning={this.state.weekBeginning}
                                 onChangeDay={this.saveDay}
                                 onTouchStart={this.onTouchStart}
                                 onTouchMove={this.onTouchMove}
