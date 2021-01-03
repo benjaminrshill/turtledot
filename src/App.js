@@ -74,7 +74,7 @@ class App extends React.Component {
       if (day > 1) {
           newDate.setDate(newDate.getDate() - day + 1);
       } else if (day === 0) {
-          newDate.setDate(newDate.getDate() - 7);
+          newDate.setDate(newDate.getDate() - 6);
       }
       let week = newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
       this.setState({

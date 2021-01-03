@@ -6,7 +6,6 @@
     max-height: 25vh;
     font-size: 2rem;
     border: var(--main-border);
-    border-bottom: 0;
     background: var(--high-color);
 }
 
@@ -18,6 +17,10 @@
     border: 0;
     border-bottom: var(--main-border);
     border-radius: 0;
+}
+
+.items-list-item:last-child {
+    border-bottom: 0;
 }
 
 .week-number-alert {
