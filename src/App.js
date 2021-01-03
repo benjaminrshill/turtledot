@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Header from './components/Header';
-import Nav from './components/Nav';
 import Items from './components/Items';
 import Arrange from './components/Arrange';
+import Week from "./components/Week";
+import Header from './components/Header';
+import Nav from './components/Nav';
+import sortColor from "./functions/sortColor";
 import './app.css';
 
 class App extends React.Component {
@@ -19,6 +21,7 @@ class App extends React.Component {
               }
           ],
           thisWeekBeginning: '',
+          nextWeekBeginning: '',
           colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'],
           days: ['M','T','W','T','F','S','S']
       }
@@ -27,7 +30,10 @@ class App extends React.Component {
   componentDidMount() {
       this.getItems();
       this.getWeeks();
-      this.getThisWeekBeginning();
+      this.setState({
+          thisWeekBeginning: this.getWeekBeginning(),
+          nextWeekBeginning: this.getWeekBeginning(7)
+      });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -52,7 +58,7 @@ class App extends React.Component {
   getItems = () => {
       if (localStorage.getItem('items')) {
           const storedItems = JSON.parse(localStorage.getItem('items'));
-          storedItems.sort((a, b) => (a.color > b.color) ? 1 : -1);
+          sortColor(storedItems);
           this.setState({
               items: [...storedItems]
           });
@@ -68,18 +74,17 @@ class App extends React.Component {
       }
   }
 
-  getThisWeekBeginning = () => {
+  getWeekBeginning = (addWeek = 0) => {
       let newDate = new Date();
       let day = newDate.getDay();
       if (day > 1) {
-          newDate.setDate(newDate.getDate() - day + 1);
+          newDate.setDate(newDate.getDate() - day + 1 + addWeek);
       } else if (day === 0) {
-          newDate.setDate(newDate.getDate() - 6);
+          newDate.setDate(newDate.getDate() - 6 + addWeek);
+      } else {
+          newDate.setDate(newDate.getDate() + addWeek);
       }
-      let week = newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
-      this.setState({
-          thisWeekBeginning: week
-      });
+      return newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
   }
 
   changeDayInState = (event) => {
@@ -132,12 +137,13 @@ class App extends React.Component {
                           onUpdateState={this.updateState}
                       />
                   </Route>
-                  <Route path='/'>
+                  <Route path='/Arrange'>
                       <Arrange
                           items={this.state.items}
                           weeks={this.state.weeks}
                           colors={this.state.colors}
                           thisWeekBeginning={this.state.thisWeekBeginning}
+                          nextWeekBeginning={this.state.nextWeekBeginning}
                           days={this.state.days}
                           onChangeDay={this.changeDayInState}
                           onAddItemToWeek={this.addItemToWeek}
@@ -145,6 +151,19 @@ class App extends React.Component {
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
+                  {/*<Route path='/'>*/}
+                  {/*    <Week*/}
+                  {/*        items={this.state.items}*/}
+                  {/*        weeks={this.state.weeks}*/}
+                  {/*        colors={this.state.colors}*/}
+                  {/*        thisWeekBeginning={this.state.thisWeekBeginning}*/}
+                  {/*        days={this.state.days}*/}
+                  {/*        onChangeDay={this.changeDayInState}*/}
+                  {/*        onAddItemToWeek={this.addItemToWeek}*/}
+                  {/*        onRemoveItemFromWeek={this.removeItemFromWeek}*/}
+                  {/*        onNewItemToState={this.newItemToState}*/}
+                  {/*    />*/}
+                  {/*</Route>*/}
               </Switch>
               <Nav />
           </Router>

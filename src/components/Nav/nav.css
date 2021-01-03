@@ -46,7 +46,14 @@ a {
     text-transform: uppercase;
 }
 
-.here, .menu-item.here .menu-icon span {
+.here {
     color: #c2c2c2;
+}
+
+.menu-item.here .menu-icon span {
     border-color: #c2c2c2;
+}
+
+.menu-item.here .menu-icon span.done {
+    background: #c2c2c2;
 }

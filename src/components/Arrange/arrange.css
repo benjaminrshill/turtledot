@@ -24,9 +24,9 @@
 }
 
 .week-number-arrow-up {
-    background: rgba(255, 0, 0, 0.4) url('./arrowUp.svg') center/cover;
+    background: rgba(255, 0, 0, 0.4) url('alerts/arrowUp.svg') center/cover;
 }
 
 .week-number-arrow-down {
-    background: rgba(255, 0, 0, 0.4) url('./arrowDown.svg') center/cover;
+    background: rgba(255, 0, 0, 0.4) url('alerts/arrowDown.svg') center/cover;
 }

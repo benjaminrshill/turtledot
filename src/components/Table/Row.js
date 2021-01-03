@@ -3,8 +3,9 @@ import React from 'react';
 export default function Row(props) {
 
     const currentNumber = props.todo.reduce((a, b) => a + b, 0);
-    const tooHigh = currentNumber > +props.number;
-    const tooLow = currentNumber < +props.number;
+    const allDone = props.thisWeek && currentNumber >= props.number;
+    const tooHigh = !allDone && currentNumber > +props.number;
+    const tooLow = !allDone && currentNumber < +props.number;
 
     return (
         <tr className={props.color}>

@@ -1,5 +1,6 @@
 import React from 'react';
 import Row from '../Table/Row';
+import sortColor from "../../functions/sortColor";
 import './arrange.css';
 
 class Arrange extends React.Component {
@@ -47,8 +48,8 @@ class Arrange extends React.Component {
                 }
             });
         }
-        selected.sort((a, b) => (a.color > b.color) ? 1 : -1);
-        unselected.sort((a, b) => (a.color > b.color) ? 1 : -1);
+        sortColor(selected);
+        sortColor(unselected);
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
@@ -153,6 +154,7 @@ class Arrange extends React.Component {
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}
+                                thisWeek={false}
                                 onChangeDay={this.saveDay}
                                 onTouchStart={this.onTouchStart}
                                 onTouchMove={this.onTouchMove}
