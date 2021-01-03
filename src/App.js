@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Items from './components/Items';
 import Arrange from './components/Arrange';
-import Week from "./components/Week";
 import Header from './components/Header';
 import Nav from './components/Nav';
 import sortColor from "./functions/sortColor";
@@ -20,8 +19,9 @@ class App extends React.Component {
                   items: []
               }
           ],
-          thisWeekBeginning: '',
-          nextWeekBeginning: '',
+          lastWeekBeginning: this.getWeekBeginning(-7),
+          thisWeekBeginning: this.getWeekBeginning(),
+          nextWeekBeginning: this.getWeekBeginning(7),
           colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'],
           days: ['M','T','W','T','F','S','S']
       }
@@ -30,10 +30,6 @@ class App extends React.Component {
   componentDidMount() {
       this.getItems();
       this.getWeeks();
-      this.setState({
-          thisWeekBeginning: this.getWeekBeginning(),
-          nextWeekBeginning: this.getWeekBeginning(7)
-      });
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -57,19 +53,19 @@ class App extends React.Component {
 
   getItems = () => {
       if (localStorage.getItem('items')) {
-          const storedItems = JSON.parse(localStorage.getItem('items'));
-          sortColor(storedItems);
+          const items = JSON.parse(localStorage.getItem('items'));
+          sortColor(items);
           this.setState({
-              items: [...storedItems]
+              items: [...items]
           });
       }
   }
 
   getWeeks = () => {
       if (localStorage.getItem('weeks')) {
-          const storedWeeks = JSON.parse(localStorage.getItem('weeks'));
+          const weeks = JSON.parse(localStorage.getItem('weeks'));
           this.setState({
-              weeks: [...storedWeeks]
+              weeks: [...weeks]
           });
       }
   }
@@ -87,38 +83,41 @@ class App extends React.Component {
       return newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
   }
 
-  changeDayInState = (event) => {
-      let newDay = [...this.state.weeks];
-      let id = newDay[0].items.findIndex(item => item[0] === event.currentTarget.dataset.id);
-      let day = event.currentTarget.dataset.day;
-      newDay[0].items[id][1][day] = (newDay[0].items[id][1][day] > 0 ? 0 : 1);
+  addItemToWeek = (id, week) => {
+      let weeks = [...this.state.weeks];
+      let currentWeek = weeks.find(needle => needle.date === week);
+      if (currentWeek === undefined) {
+          let newWeek = {
+              date: week,
+              items: [[id, [0,0,0,0,0,0,0]]]
+          }
+          weeks.push(newWeek);
+      } else {
+          currentWeek.items.push([id, [0,0,0,0,0,0,0]]);
+          console.log('yes week');
+      }
       this.setState({
-          weeks: [...newDay]
+          weeks: [...weeks]
       });
+      setTimeout(() => console.log(this.state), 50);
   }
 
-  addItemToWeek = (id) => {
-      let weeks;
-      if (this.state.weeks[0].items !== undefined) {
-          weeks = [...this.state.weeks];
-          weeks[0].items.push([id, [0,0,0,0,0,0,0]]);
-      } else {
-          weeks = [
-              {
-                  date: this.state.thisWeekBeginning,
-                  items: [[id, [0,0,0,0,0,0,0]]]
-              }
-          ]
-      }
+  removeItemFromWeek = (id, week) => {
+      let weeks = [...this.state.weeks];
+      let currentWeek = weeks.find(needle => needle.date === week);
+      let newWeekItems = currentWeek.items.filter(needle => needle[0] !== id);
+      currentWeek.items = [...newWeekItems];
       this.setState({
           weeks: [...weeks]
       });
   }
 
-  removeItemFromWeek = (id) => {
+  changeDayInState = (event, week) => {
       let weeks = [...this.state.weeks];
-      let newWeekItems = weeks[0].items.filter(week => week[0] !== id);
-      weeks[0].items = [...newWeekItems];
+      let currentWeek = weeks.find(needle => needle.date === week);
+      let id = currentWeek.items.findIndex(item => item[0] === event.currentTarget.dataset.id);
+      let day = event.currentTarget.dataset.day;
+      currentWeek.items[id][1][day] = (currentWeek.items[id][1][day] > 0 ? 0 : 1);
       this.setState({
           weeks: [...weeks]
       });
@@ -139,31 +138,13 @@ class App extends React.Component {
                   </Route>
                   <Route path='/Arrange'>
                       <Arrange
-                          items={this.state.items}
-                          weeks={this.state.weeks}
-                          colors={this.state.colors}
-                          thisWeekBeginning={this.state.thisWeekBeginning}
-                          nextWeekBeginning={this.state.nextWeekBeginning}
-                          days={this.state.days}
+                          scida={this.state}
                           onChangeDay={this.changeDayInState}
                           onAddItemToWeek={this.addItemToWeek}
                           onRemoveItemFromWeek={this.removeItemFromWeek}
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
-                  {/*<Route path='/'>*/}
-                  {/*    <Week*/}
-                  {/*        items={this.state.items}*/}
-                  {/*        weeks={this.state.weeks}*/}
-                  {/*        colors={this.state.colors}*/}
-                  {/*        thisWeekBeginning={this.state.thisWeekBeginning}*/}
-                  {/*        days={this.state.days}*/}
-                  {/*        onChangeDay={this.changeDayInState}*/}
-                  {/*        onAddItemToWeek={this.addItemToWeek}*/}
-                  {/*        onRemoveItemFromWeek={this.removeItemFromWeek}*/}
-                  {/*        onNewItemToState={this.newItemToState}*/}
-                  {/*    />*/}
-                  {/*</Route>*/}
               </Switch>
               <Nav />
           </Router>

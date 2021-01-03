@@ -5,6 +5,13 @@ h1 {
   text-transform: uppercase;
 }
 
+h2 {
+  margin: 3rem;
+  font-size: 3rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 main {
   margin: 0 0 12vh 0;
 }
@@ -63,6 +70,10 @@ tr {
 td {
   font-size: 3rem;
   border: var(--main-border);
+}
+
+.week {
+  margin: 0 auto 5vh auto;
 }
 
 .week-date {
