@@ -47,6 +47,6 @@ a {
 }
 
 .here, .menu-item.here .menu-icon span {
-    color: var(--base-color);
-    border-color: var(--base-color);
+    color: #c2c2c2;
+    border-color: #c2c2c2;
 }

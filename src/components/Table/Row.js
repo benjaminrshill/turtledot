@@ -1,7 +1,11 @@
 import React from 'react';
 
 export default function Row(props) {
+
     const currentNumber = props.todo.reduce((a, b) => a + b, 0);
+    const tooHigh = currentNumber > +props.number;
+    const tooLow = currentNumber < +props.number;
+
     return (
         <tr className={props.color}>
             <td
@@ -12,7 +16,7 @@ export default function Row(props) {
                 className='week-item left-column'>
                 {props.text}
             </td>
-            <td className={'week-item-number' + (currentNumber !== +props.number ? ' week-number-alert' : '')}>
+            <td className={'week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
                 {props.number}
             </td>
             {props.todo.map((day, i) =>
