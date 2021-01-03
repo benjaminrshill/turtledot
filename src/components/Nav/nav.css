@@ -7,7 +7,6 @@ nav {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 10vh;
     min-height: 50px;
     max-height: 200px;
     background: var(--high-color);
@@ -22,9 +21,6 @@ a {
 .menu-item {
     width: 25vw;
     height: auto;
-    font-size: 2rem;
-    font-weight: 400;
-    text-transform: uppercase;
     border: none;
 }
 
@@ -45,5 +41,12 @@ a {
 }
 
 .menu-text {
+    font-size: 1.5rem;
     line-height: 5rem;
+    text-transform: uppercase;
+}
+
+.here, .menu-item.here .menu-icon span {
+    color: var(--base-color);
+    border-color: var(--base-color);
 }
