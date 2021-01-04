@@ -26,19 +26,19 @@ class ArrangeWeek extends React.Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.createWeek(), 500);
+        this.createWeek();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props) {
-            setTimeout(() => this.createWeek(), 500);
+            this.createWeek();
         }
     }
 
-    createWeek = () => {
+    createWeek = async () => {
         let selected = [];
         let unselected = [...this.props.scida.items];
-        let currentWeek = this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
+        let currentWeek = await this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
         if (currentWeek !== undefined) {
             currentWeek.items.forEach(week => {
                 if (unselected.find(item => item.id === week[0])) {
@@ -58,21 +58,6 @@ class ArrangeWeek extends React.Component {
     }
 
     saveWeek = (event) => {
-        // let weeks = [];
-        // let currentWeek = {
-        //     date: this.props.weekBeginning,
-        //     items: []
-        // };
-        // this.state.selected.forEach(item => {
-        //     currentWeek.items.push([item.id, item.todo]);
-        // });
-        // currentWeek.items.push([event.target.id, [0,0,0,0,0,0,0]]);
-        // if (localStorage.getItem('weeks')) {
-        //     let oldWeeks = JSON.parse(localStorage.getItem('weeks'));
-        //     weeks = oldWeeks.filter(old => old.date !== currentWeek.date);
-        // }
-        // weeks.push(currentWeek);
-        // localStorage.setItem('weeks', JSON.stringify(weeks));
         this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
