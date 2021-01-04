@@ -25,6 +25,7 @@ class App extends React.Component {
           colors: ['color0', 'color1', 'color2', 'color3', 'color4', 'color5', 'color6', 'color7', 'color8', 'color9'],
           days: ['M','T','W','T','F','S','S']
       }
+      this.sortColor = sortColor.bind(this);
   }
 
   componentDidMount() {
@@ -73,6 +74,7 @@ class App extends React.Component {
   getWeekBeginning = (addWeek = 0) => {
       let newDate = new Date();
       let day = newDate.getDay();
+      function padZero(n){ return n < 10 ? '0' + n : n}
       if (day > 1) {
           newDate.setDate(newDate.getDate() - day + 1 + addWeek);
       } else if (day === 0) {
@@ -80,7 +82,7 @@ class App extends React.Component {
       } else {
           newDate.setDate(newDate.getDate() + addWeek);
       }
-      return newDate.getFullYear() + '/' + (newDate.getMonth() + 1) + '/' + newDate.getDate();
+      return newDate.getFullYear() + '/' + padZero(newDate.getMonth() + 1) + '/' + padZero(newDate.getDate());
   }
 
   addItemToWeek = (id, week) => {
@@ -110,10 +112,11 @@ class App extends React.Component {
       });
   }
 
-  changeDayInState = (event) => {
+  changeDayInState = (event, week) => {
+      let id = event.currentTarget.id.slice(0, -11);
       let weeks = [...this.state.weeks];
-      let currentWeek = weeks.find(needle => needle.date === event.currentTarget.dataset.week);
-      let item = currentWeek.items.find(item => item[0] === event.currentTarget.dataset.id);
+      let currentWeek = weeks.find(needle => needle.date === week);
+      let item = currentWeek.items.find(item => item[0] === id);
       let day = event.currentTarget.dataset.day;
       item[1][day] = (item[1][day] > 0 ? 0 : 1);
       this.setState({

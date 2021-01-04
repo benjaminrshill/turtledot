@@ -8,7 +8,6 @@ class ArrangeWeek extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            weekBeginning: this.props.thisWeek ? this.props.scida.thisWeekBeginning : this.props.scida.nextWeekBeginning,
             selected: [
                 {
                     id: '',
@@ -23,22 +22,23 @@ class ArrangeWeek extends React.Component {
             moveX: 0,
             finalX: 0
         };
+        this.sortColor = sortColor.bind(this);
     }
 
     componentDidMount() {
-        this.createWeek();
+        setTimeout(() => this.createWeek(), 500);
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props) {
-            this.createWeek();
+            setTimeout(() => this.createWeek(), 500);
         }
     }
 
     createWeek = () => {
         let selected = [];
         let unselected = [...this.props.scida.items];
-        let currentWeek = this.props.scida.weeks.find(week => week.date === this.state.weekBeginning);
+        let currentWeek = this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
         if (currentWeek !== undefined) {
             currentWeek.items.forEach(week => {
                 if (unselected.find(item => item.id === week[0])) {
@@ -49,8 +49,8 @@ class ArrangeWeek extends React.Component {
                 }
             });
         }
-        sortColor(selected);
-        sortColor(unselected);
+        this.sortColor(selected);
+        this.sortColor(unselected);
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
@@ -60,7 +60,7 @@ class ArrangeWeek extends React.Component {
     saveWeek = (event) => {
         // let weeks = [];
         // let currentWeek = {
-        //     date: this.state.weekBeginning,
+        //     date: this.props.weekBeginning,
         //     items: []
         // };
         // this.state.selected.forEach(item => {
@@ -73,7 +73,7 @@ class ArrangeWeek extends React.Component {
         // }
         // weeks.push(currentWeek);
         // localStorage.setItem('weeks', JSON.stringify(weeks));
-        this.props.onAddItemToWeek(event.currentTarget.id, this.state.weekBeginning);
+        this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
     onTouchStart = (event) => {
@@ -104,12 +104,12 @@ class ArrangeWeek extends React.Component {
 
     removeItem = (event) => {
         if (window.confirm('Really remove?')) {
-            this.props.onRemoveItemFromWeek(event.currentTarget.id, this.state.weekBeginning);
+            this.props.onRemoveItemFromWeek(event.currentTarget.id, this.props.weekBeginning);
         }
     }
 
     saveDay = (event) => {
-        this.props.onChangeDay(event);
+        this.props.onChangeDay(event, this.props.weekBeginning);
     }
 
     render() {
@@ -123,14 +123,14 @@ class ArrangeWeek extends React.Component {
                         <thead>
                         <tr>
                             <td className='week-date left-column'>
-                                {this.state.weekBeginning}
+                                {this.props.weekBeginning}
                             </td>
                             <td className='week-date'>
 
                             </td>
                             {this.props.scida.days.map((day, i) =>
                                 <td
-                                    key={day + i + this.state.weekBeginning}
+                                    key={day + i + this.props.weekBeginning}
                                     className='day'>
                                     {day}
                                 </td>
@@ -140,13 +140,13 @@ class ArrangeWeek extends React.Component {
                         <tbody>
                         {this.state.selected.map(item =>
                             <Row
-                                key={item.id + this.state.weekBeginning}
-                                id={item.id}
+                                key={item.id + this.props.weekBeginning}
+                                id={item.id + this.props.weekBeginning}
                                 text={item.text}
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}
-                                weekBeginning={this.state.weekBeginning}
+                                weekBeginning={this.props.weekBeginning}
                                 onChangeDay={this.saveDay}
                                 onTouchStart={this.onTouchStart}
                                 onTouchMove={this.onTouchMove}
@@ -161,7 +161,7 @@ class ArrangeWeek extends React.Component {
                     <div className='items-list'>
                         {this.state.unselected.map(item =>
                             <button
-                                key={item.id + this.state.weekBeginning}
+                                key={item.id + this.props.weekBeginning + 'u'}
                                 id={item.id}
                                 className={'items-list-item ' + item.color}
                                 onClick={this.saveWeek}>
