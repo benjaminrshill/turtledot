@@ -23,7 +23,7 @@ export default function Row(props) {
             {props.todo.map((day, i) =>
                 <td
                     key={props.id + i}
-                    id={props.id + i}
+                    id={props.id}
                     data-day={i}
                     data-week={props.weekBeginning}
                     onClick={props.onChangeDay}

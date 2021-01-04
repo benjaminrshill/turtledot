@@ -58,6 +58,21 @@ class ArrangeWeek extends React.Component {
     }
 
     saveWeek = (event) => {
+        let weeks = [];
+        let week = {
+            date: this.props.weekBeginning,
+            items: []
+        };
+        this.state.selected.forEach(item => {
+            week.items.push([item.id, item.todo]);
+        });
+        week.items.push([event.target.id, [0,0,0,0,0,0,0]]);
+        if (localStorage.getItem('weeks')) {
+            let oldWeeks = JSON.parse(localStorage.getItem('weeks'));
+            weeks = oldWeeks.filter(old => old.date !== week.date);
+        }
+        weeks.push(week);
+        localStorage.setItem('weeks', JSON.stringify(weeks));
         this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
@@ -89,11 +104,22 @@ class ArrangeWeek extends React.Component {
 
     removeItem = (event) => {
         if (window.confirm('Really remove?')) {
+            let weeks = JSON.parse(localStorage.getItem('weeks'));
+            let newWeekItems = weeks[this.state.week].items.filter(keep => keep[0] !== event.currentTarget.id);
+            weeks[this.state.week].items = [...newWeekItems];
+            localStorage.setItem('weeks', JSON.stringify(weeks));
             this.props.onRemoveItemFromWeek(event.currentTarget.id, this.props.weekBeginning);
         }
     }
 
     saveDay = (event) => {
+        let weeks = JSON.parse(localStorage.getItem('weeks'));
+        let week = this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
+        let currentWeek = weeks.find(needle => needle.date === week.date);
+        let item = currentWeek.items.find(item => item[0] === event.currentTarget.id);
+        let day = event.currentTarget.dataset.day;
+        item[1][day] = (item[1][day] > 0 ? 0 : 1);
+        localStorage.setItem('weeks', JSON.stringify(weeks));
         this.props.onChangeDay(event, this.props.weekBeginning);
     }
 
@@ -126,7 +152,7 @@ class ArrangeWeek extends React.Component {
                         {this.state.selected.map(item =>
                             <Row
                                 key={item.id + this.props.weekBeginning}
-                                id={item.id + this.props.weekBeginning}
+                                id={item.id}
                                 text={item.text}
                                 number={item.number}
                                 color={item.color}

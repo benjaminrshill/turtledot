@@ -113,7 +113,7 @@ class App extends React.Component {
   }
 
   changeDayInState = (event, week) => {
-      let id = event.currentTarget.id.slice(0, -11);
+      let id = event.currentTarget.id;
       let weeks = [...this.state.weeks];
       let currentWeek = weeks.find(needle => needle.date === week);
       let item = currentWeek.items.find(item => item[0] === id);
