@@ -26,12 +26,12 @@ class ArrangeWeek extends React.Component {
     }
 
     componentDidMount() {
-        this.createWeek();
+        this.createWeek().then();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps !== this.props) {
-            this.createWeek();
+            this.createWeek().then();
         }
     }
 
@@ -61,31 +61,31 @@ class ArrangeWeek extends React.Component {
         this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
-    onTouchStart = (event) => {
-        event.preventDefault();
-        this.setState({
-            initialX: event.touches[0].clientX
-        });
-    }
-
-    onTouchMove = (event) => {
-        event.preventDefault();
-        if (this.state.initialX === 0) return;
-        this.setState({
-            moveX: event.touches[0].clientX,
-            finalX: this.state.initialX - this.state.moveX
-        });
-    }
-
-    onTouchEnd = (event) => {
-        event.preventDefault();
-        if (this.state.finalX > 100 || this.state.finalX < -100) this.removeItem(event);
-        this.setState({
-            initialX: 0,
-            moveX: 0,
-            finalX: 0
-        });
-    }
+    // onTouchStart = (event) => {
+    //     event.preventDefault();
+    //     this.setState({
+    //         initialX: event.touches[0].clientX
+    //     });
+    // }
+    //
+    // onTouchMove = (event) => {
+    //     event.preventDefault();
+    //     if (this.state.initialX === 0) return;
+    //     this.setState({
+    //         moveX: event.touches[0].clientX,
+    //         finalX: this.state.initialX - this.state.moveX
+    //     });
+    // }
+    //
+    // onTouchEnd = (event) => {
+    //     event.preventDefault();
+    //     if (this.state.finalX > 100 || this.state.finalX < -100) this.removeItem(event);
+    //     this.setState({
+    //         initialX: 0,
+    //         moveX: 0,
+    //         finalX: 0
+    //     });
+    // }
 
     removeItem = (event) => {
         if (window.confirm('Really remove?')) {
