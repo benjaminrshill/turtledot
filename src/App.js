@@ -72,8 +72,8 @@ class App extends React.Component {
   }
 
   getWeekBeginning = (addWeek = 0) => {
-      let newDate = new Date();
-      let day = newDate.getDay();
+      let newDate = new Date(),
+          day = newDate.getDay();
       function padZero(n){ return n < 10 ? '0' + n : n}
       if (day > 1) {
           newDate.setDate(newDate.getDate() - day + 1 + addWeek);
@@ -86,8 +86,8 @@ class App extends React.Component {
   }
 
   addItemToWeek = (id, week) => {
-      let weeks = [...this.state.weeks];
-      let currentWeek = weeks.find(needle => needle.date === week);
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week);
       if (currentWeek === undefined) {
           let newWeek = {
               date: week,
@@ -103,10 +103,21 @@ class App extends React.Component {
       });
   }
 
+  moveItemInWeek = (dragged, dropped, week) => {
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week),
+          rowToDrop = currentWeek.items.splice(dragged, 1);
+      console.log(currentWeek)
+      currentWeek.items.splice(dropped, 0, ...rowToDrop);
+      this.setState({
+          weeks: [...weeks]
+      });
+  }
+
   removeItemFromWeek = (id, week) => {
-      let weeks = [...this.state.weeks];
-      let currentWeek = weeks.find(needle => needle.date === week);
-      let newWeekItems = currentWeek.items.filter(needle => needle[0] !== id);
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week),
+          newWeekItems = currentWeek.items.filter(needle => needle[0] !== id);
       currentWeek.items = [...newWeekItems];
       localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
@@ -115,10 +126,10 @@ class App extends React.Component {
   }
 
   changeDayInState = (event, week) => {
-      let weeks = [...this.state.weeks];
-      let currentWeek = weeks.find(needle => needle.date === week);
-      let item = currentWeek.items.find(item => item[0] === event.currentTarget.id);
-      let day = event.currentTarget.dataset.day;
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week),
+          item = currentWeek.items.find(item => item[0] === event.currentTarget.id),
+          day = event.currentTarget.dataset.day;
       item[1][day] = (item[1][day] > 0 ? 0 : 1);
       localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
@@ -144,6 +155,7 @@ class App extends React.Component {
                           scida={this.state}
                           onChangeDay={this.changeDayInState}
                           onAddItemToWeek={this.addItemToWeek}
+                          onMoveItemInWeek={this.moveItemInWeek}
                           onRemoveItemFromWeek={this.removeItemFromWeek}
                           onNewItemToState={this.newItemToState}
                       />

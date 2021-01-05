@@ -9,14 +9,18 @@ export default function Row(props) {
 
     return (
         <tr
+            draggable={true}
+            id={props.id + props.weekBeginning}
+            data-index={props.index}
             data-dragid={props.id}
             data-dragweek={props.weekBeginning}
-            className={props.color}>
+            className={props.color}
+            onDragStart={props.onDragStart}
+            onDragOver={props.onDragOver}
+            onDragLeave={props.onDragLeave}
+            onDrop={props.onDrop}>
             <td
                 id={props.id}
-                onTouchStart={props.onTouchStart}
-                onTouchMove={props.onTouchMove}
-                onTouchEnd={props.onTouchEnd}
                 className='week-item left-column'>
                 {props.text}
             </td>

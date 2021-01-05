@@ -1,6 +1,5 @@
 import React from 'react';
 import Row from '../../Table/Row';
-import { onDragStart, onDragOver, onDragExit, onDrop } from '../../../functions/dragDrop';
 import '../arrange.css';
 
 let touchData = {};
@@ -24,10 +23,6 @@ class ArrangeWeek extends React.Component {
             moveX: 0,
             finalX: 0
         };
-        this.onDragStart = onDragStart.bind(this);
-        this.onDragOver = onDragOver.bind(this);
-        this.onDragExit = onDragExit.bind(this);
-        this.onDrop = onDrop.bind(this);
     }
 
     componentDidMount() {
@@ -64,27 +59,40 @@ class ArrangeWeek extends React.Component {
         this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
-    // onTouchStart = (event) => {
-    //     event.preventDefault();
-    //     touchData.initialX = event.touches[0].clientX;
-    // }
-    //
-    // onTouchMove = (event) => {
-    //     event.preventDefault();
-    //     if (touchData.initialX === 0) return;
-    //     touchData.moveX = event.touches[0].clientX;
-    //     touchData.finalX = touchData.initialX - touchData.moveX;
-    // }
-    //
-    // onTouchEnd = (event) => {
-    //     event.preventDefault();
-    //     if (touchData.finalX > 100 || touchData.finalX < -100) this.removeItem(event);
-    //     touchData = {
-    //         initialX: 0,
-    //         moveX: 0,
-    //         finalX: 0
-    //     }
-    // }
+    onDragStart = (event) => {
+        // event.preventDefault();
+        touchData.item = event.currentTarget.id;
+    }
+
+    onDragOver = (event) => {
+        event.preventDefault();
+        let movedItem = document.getElementById(touchData.item),
+            movingOver = event.currentTarget,
+            movedParent = movingOver.parentNode;
+        touchData.rect = movingOver.getBoundingClientRect();
+        if (movedParent.dataset.dragweek === movingOver.dataset.dragweek) {
+            if (movingOver === movedItem) { // prevent dropping on self
+                event.dataTransfer.dropEffect = 'none';
+            } else if (movedItem.dataset.dragweek === movingOver.dataset.dragweek) {
+                movingOver.classList.add('scooch');
+                event.dataTransfer.dropEffect = 'move';
+            }
+        }
+    }
+
+    onDragLeave = (event) => {
+        if (event.clientY < touchData.rect.top || event.clientY > touchData.rect.bottom) {
+            event.currentTarget.classList.remove('scooch');
+        }
+    }
+
+    onDrop = (event) => {
+        event.preventDefault();
+        event.currentTarget.parentNode.childNodes.forEach(row => row.classList.remove('scooch'));
+        let movedItem = document.getElementById(touchData.item),
+            droppingOn = event.currentTarget;
+        this.props.onMoveItemInWeek(+movedItem.dataset.index, +droppingOn.dataset.index, droppingOn.dataset.dragweek);
+    }
 
     removeItem = (event) => {
         if (window.confirm('Really remove?')) {
@@ -122,19 +130,21 @@ class ArrangeWeek extends React.Component {
                         </tr>
                         </thead>
                         <tbody data-dragweek={this.props.weekBeginning}>
-                        {this.state.selected.map(item =>
+                        {this.state.selected.map((item, i) =>
                             <Row
                                 key={item.id + this.props.weekBeginning}
                                 id={item.id}
+                                index={i}
                                 text={item.text}
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}
                                 weekBeginning={this.props.weekBeginning}
                                 onChangeDay={this.saveDay}
-                                onTouchStart={this.onTouchStart}
-                                onTouchMove={this.onTouchMove}
-                                onTouchEnd={this.onTouchEnd}
+                                onDragStart={this.onDragStart}
+                                onDragOver={this.onDragOver}
+                                onDragLeave={this.onDragLeave}
+                                onDrop={this.onDrop}
                             />
                         )}
                         </tbody>

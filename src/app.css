@@ -124,3 +124,9 @@ td {
   border: var(--main-border);
   background: var(--line-color);
 }
+
+.scooch {
+  box-shadow: -2px -2px 2px 0 var(--line-color);
+  transform: translate(2px, 2px);
+  transition: all ease-in-out;
+}
