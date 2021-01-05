@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/scida/static/css/main.7b2a1c71.chunk.css",
+    "main.js": "/scida/static/js/main.ee301505.chunk.js",
+    "main.js.map": "/scida/static/js/main.ee301505.chunk.js.map",
+    "runtime-main.js": "/scida/static/js/runtime-main.d4274a60.js",
+    "runtime-main.js.map": "/scida/static/js/runtime-main.d4274a60.js.map",
+    "static/js/2.c0facc09.chunk.js": "/scida/static/js/2.c0facc09.chunk.js",
+    "static/js/2.c0facc09.chunk.js.map": "/scida/static/js/2.c0facc09.chunk.js.map",
+    "index.html": "/scida/index.html",
+    "static/css/main.7b2a1c71.chunk.css.map": "/scida/static/css/main.7b2a1c71.chunk.css.map",
+    "static/js/2.c0facc09.chunk.js.LICENSE.txt": "/scida/static/js/2.c0facc09.chunk.js.LICENSE.txt",
+    "static/media/arrange.css": "/scida/static/media/arrowUp.db38afd6.svg",
+    "static/media/index.css": "/scida/static/media/tuttledotG.2b514dd6.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d4274a60.js",
+    "static/js/2.c0facc09.chunk.js",
+    "static/css/main.7b2a1c71.chunk.css",
+    "static/js/main.ee301505.chunk.js"
+  ]
+}
