@@ -110,6 +110,7 @@ class App extends React.Component {
           rowToDrop = currentWeek.items.splice(dragged, 1);
       console.log(currentWeek)
       currentWeek.items.splice(dropped, 0, ...rowToDrop);
+      localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
           weeks: [...weeks]
       });
