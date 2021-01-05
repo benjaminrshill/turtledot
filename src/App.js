@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import sortColor from "./functions/sortColor";
 import './app.css';
+import Doit from "./components/Doit";
 
 class App extends React.Component {
 
@@ -125,12 +126,16 @@ class App extends React.Component {
       });
   }
 
-  changeDayInState = (event, week) => {
+  changeDay = (event, week, closed = 0) => {
       let weeks = [...this.state.weeks],
           currentWeek = weeks.find(needle => needle.date === week),
           item = currentWeek.items.find(item => item[0] === event.currentTarget.id),
           day = event.currentTarget.dataset.day;
-      item[1][day] = (item[1][day] > 0 ? 0 : 1);
+      if (closed > 0) {
+          item[1][day] = (item[1][day] < 2 ? 2 : 1)
+      } else {
+          item[1][day] = (item[1][day] > 0 ? 0 : 1);
+      }
       localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
           weeks: [...weeks]
@@ -153,7 +158,17 @@ class App extends React.Component {
                   <Route path='/Arrange'>
                       <Arrange
                           scida={this.state}
-                          onChangeDay={this.changeDayInState}
+                          onChangeDay={this.changeDay}
+                          onAddItemToWeek={this.addItemToWeek}
+                          onMoveItemInWeek={this.moveItemInWeek}
+                          onRemoveItemFromWeek={this.removeItemFromWeek}
+                          onNewItemToState={this.newItemToState}
+                      />
+                  </Route>
+                  <Route path='/Doit'>
+                      <Doit
+                          scida={this.state}
+                          onChangeDay={this.changeDay}
                           onAddItemToWeek={this.addItemToWeek}
                           onMoveItemInWeek={this.moveItemInWeek}
                           onRemoveItemFromWeek={this.removeItemFromWeek}

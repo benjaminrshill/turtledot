@@ -1,6 +1,6 @@
 import React from 'react';
 import Row from '../../Table/Row';
-import '../arrange.css';
+import '../../weeks.css';
 
 let touchData = {};
 

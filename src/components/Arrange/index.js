@@ -1,6 +1,6 @@
 import React from 'react';
 import ArrangeWeek from "./ArrangeWeek";
-import './arrange.css';
+import '../weeks.css';
 
 class Arrange extends React.Component {
 

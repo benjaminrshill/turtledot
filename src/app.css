@@ -109,6 +109,11 @@ td {
   background: rgba(255,255,255,0.5);
 }
 
+.allDone, .allDone .week-spots {
+  color: var(--high-color);
+  background: var(--line-color);
+}
+
 .spot {
   width: 1.5rem;
   height: 1.5rem;
@@ -123,6 +128,11 @@ td {
 .spot.closed {
   border: var(--main-border);
   background: var(--line-color);
+}
+
+.allDone .spot.closed {
+  border: #1dff75;
+  background: #1dff75;
 }
 
 .scooch {

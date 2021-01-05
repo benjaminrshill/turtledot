@@ -1,4 +1,4 @@
-@import '../../colors.css';
+@import '../colors.css';
 
 .items-list {
     overflow-y: scroll;
@@ -24,9 +24,9 @@
 }
 
 .week-number-arrow-up {
-    background: rgba(255, 0, 0, 0.4) url('alerts/arrowUp.svg') center/cover;
+    background: rgba(255, 0, 0, 0.4) url('Arrange/alerts/arrowUp.svg') center/cover;
 }
 
 .week-number-arrow-down {
-    background: rgba(255, 0, 0, 0.4) url('alerts/arrowDown.svg') center/cover;
+    background: rgba(255, 0, 0, 0.4) url('Arrange/alerts/arrowDown.svg') center/cover;
 }

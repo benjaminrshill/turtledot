@@ -1,29 +1,20 @@
 import React from 'react';
 
-export default function Row(props) {
+export default function DoRow(props) {
 
     const currentNumber = props.todo.reduce((a, b) => a + b, 0);
-    const tooHigh = currentNumber > +props.number;
-    const tooLow = currentNumber < +props.number;
+    const allDone = currentNumber >= props.number * 2;
 
     return (
         <tr
-            draggable={true}
             id={props.id + props.weekBeginning}
-            data-index={props.index}
-            data-dragid={props.id}
-            data-dragweek={props.weekBeginning}
-            className={props.color}
-            onDragStart={props.onDragStart}
-            onDragOver={props.onDragOver}
-            onDragLeave={props.onDragLeave}
-            onDrop={props.onDrop}>
+            className={allDone ? 'allDone' : props.color}>
             <td
                 id={props.id}
                 className='week-item left-column'>
                 {props.text}
             </td>
-            <td className={'week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
+            <td className={'week-item-number'}>
                 {props.number}
             </td>
             {props.todo.map((day, i) =>
@@ -32,10 +23,10 @@ export default function Row(props) {
                     id={props.id}
                     data-day={i}
                     data-week={props.weekBeginning}
-                    onClick={props.onChangeDay}
+                    onClick={props.onDoDay}
                     className='week-spots'>
                     <div
-                        className={'spot' + (day > 0 ? ' open' : '')}>
+                        className={'spot' + (day === 2 ? ' closed' : day === 1 ? ' open' : '')}>
                     </div>
                 </td>
             )}
