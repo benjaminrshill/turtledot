@@ -15,5 +15,5 @@
 }
 
 body {
-  background: var(--base-color);
+  background: var(--base-color) url('tuttledotG.svg') center 20vh/150vw no-repeat;
 }

@@ -8,7 +8,10 @@ export default function Row(props) {
     const tooLow = !allDone && currentNumber < +props.number;
 
     return (
-        <tr className={props.color}>
+        <tr
+            data-dragid={props.id}
+            data-dragweek={props.weekBeginning}
+            className={props.color}>
             <td
                 id={props.id}
                 onTouchStart={props.onTouchStart}

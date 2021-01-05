@@ -97,6 +97,7 @@ class App extends React.Component {
       } else {
           currentWeek.items.push([id, [0,0,0,0,0,0,0]]);
       }
+      localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
           weeks: [...weeks]
       });
@@ -107,18 +108,19 @@ class App extends React.Component {
       let currentWeek = weeks.find(needle => needle.date === week);
       let newWeekItems = currentWeek.items.filter(needle => needle[0] !== id);
       currentWeek.items = [...newWeekItems];
+      localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
           weeks: [...weeks]
       });
   }
 
   changeDayInState = (event, week) => {
-      let id = event.currentTarget.id;
       let weeks = [...this.state.weeks];
       let currentWeek = weeks.find(needle => needle.date === week);
-      let item = currentWeek.items.find(item => item[0] === id);
+      let item = currentWeek.items.find(item => item[0] === event.currentTarget.id);
       let day = event.currentTarget.dataset.day;
       item[1][day] = (item[1][day] > 0 ? 0 : 1);
+      localStorage.setItem('weeks', JSON.stringify(weeks));
       this.setState({
           weeks: [...weeks]
       });

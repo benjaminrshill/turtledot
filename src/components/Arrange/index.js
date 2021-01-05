@@ -11,19 +11,19 @@ class Arrange extends React.Component {
                     Arrange
                 </h1>
                 <ArrangeWeek
-                    key={'thisWeek'}
-                    weekName={'This Week'}
+                    key={'nextWeek'}
+                    weekName={'Next Week'}
                     scida={this.props.scida}
-                    weekBeginning={this.props.scida.thisWeekBeginning}
+                    weekBeginning={this.props.scida.nextWeekBeginning}
                     onAddItemToWeek={this.props.onAddItemToWeek}
                     onRemoveItemFromWeek={this.props.onRemoveItemFromWeek}
                     onChangeDay={this.props.onChangeDay}
                 />
                 <ArrangeWeek
-                    key={'nextWeek'}
-                    weekName={'Next Week'}
+                    key={'thisWeek'}
+                    weekName={'This Week'}
                     scida={this.props.scida}
-                    weekBeginning={this.props.scida.nextWeekBeginning}
+                    weekBeginning={this.props.scida.thisWeekBeginning}
                     onAddItemToWeek={this.props.onAddItemToWeek}
                     onRemoveItemFromWeek={this.props.onRemoveItemFromWeek}
                     onChangeDay={this.props.onChangeDay}

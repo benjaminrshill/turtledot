@@ -1,7 +1,9 @@
 import React from 'react';
 import Row from '../../Table/Row';
-import sortColor from "../../../functions/sortColor";
+import { onDragStart, onDragOver, onDragExit, onDrop } from '../../../functions/dragDrop';
 import '../arrange.css';
+
+let touchData = {};
 
 class ArrangeWeek extends React.Component {
 
@@ -22,7 +24,10 @@ class ArrangeWeek extends React.Component {
             moveX: 0,
             finalX: 0
         };
-        this.sortColor = sortColor.bind(this);
+        this.onDragStart = onDragStart.bind(this);
+        this.onDragOver = onDragOver.bind(this);
+        this.onDragExit = onDragExit.bind(this);
+        this.onDrop = onDrop.bind(this);
     }
 
     componentDidMount() {
@@ -49,8 +54,6 @@ class ArrangeWeek extends React.Component {
                 }
             });
         }
-        this.sortColor(selected);
-        this.sortColor(unselected);
         this.setState({
             selected: [...selected],
             unselected: [...unselected]
@@ -58,68 +61,38 @@ class ArrangeWeek extends React.Component {
     }
 
     saveWeek = (event) => {
-        let weeks = [];
-        let week = {
-            date: this.props.weekBeginning,
-            items: []
-        };
-        this.state.selected.forEach(item => {
-            week.items.push([item.id, item.todo]);
-        });
-        week.items.push([event.target.id, [0,0,0,0,0,0,0]]);
-        if (localStorage.getItem('weeks')) {
-            let oldWeeks = JSON.parse(localStorage.getItem('weeks'));
-            weeks = oldWeeks.filter(old => old.date !== week.date);
-        }
-        weeks.push(week);
-        localStorage.setItem('weeks', JSON.stringify(weeks));
         this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
     }
 
     // onTouchStart = (event) => {
     //     event.preventDefault();
-    //     this.setState({
-    //         initialX: event.touches[0].clientX
-    //     });
+    //     touchData.initialX = event.touches[0].clientX;
     // }
     //
     // onTouchMove = (event) => {
     //     event.preventDefault();
-    //     if (this.state.initialX === 0) return;
-    //     this.setState({
-    //         moveX: event.touches[0].clientX,
-    //         finalX: this.state.initialX - this.state.moveX
-    //     });
+    //     if (touchData.initialX === 0) return;
+    //     touchData.moveX = event.touches[0].clientX;
+    //     touchData.finalX = touchData.initialX - touchData.moveX;
     // }
     //
     // onTouchEnd = (event) => {
     //     event.preventDefault();
-    //     if (this.state.finalX > 100 || this.state.finalX < -100) this.removeItem(event);
-    //     this.setState({
+    //     if (touchData.finalX > 100 || touchData.finalX < -100) this.removeItem(event);
+    //     touchData = {
     //         initialX: 0,
     //         moveX: 0,
     //         finalX: 0
-    //     });
+    //     }
     // }
 
     removeItem = (event) => {
         if (window.confirm('Really remove?')) {
-            let weeks = JSON.parse(localStorage.getItem('weeks'));
-            let newWeekItems = weeks[this.state.week].items.filter(keep => keep[0] !== event.currentTarget.id);
-            weeks[this.state.week].items = [...newWeekItems];
-            localStorage.setItem('weeks', JSON.stringify(weeks));
             this.props.onRemoveItemFromWeek(event.currentTarget.id, this.props.weekBeginning);
         }
     }
 
     saveDay = (event) => {
-        let weeks = JSON.parse(localStorage.getItem('weeks'));
-        let week = this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
-        let currentWeek = weeks.find(needle => needle.date === week.date);
-        let item = currentWeek.items.find(item => item[0] === event.currentTarget.id);
-        let day = event.currentTarget.dataset.day;
-        item[1][day] = (item[1][day] > 0 ? 0 : 1);
-        localStorage.setItem('weeks', JSON.stringify(weeks));
         this.props.onChangeDay(event, this.props.weekBeginning);
     }
 
@@ -148,7 +121,7 @@ class ArrangeWeek extends React.Component {
                             )}
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody data-dragweek={this.props.weekBeginning}>
                         {this.state.selected.map(item =>
                             <Row
                                 key={item.id + this.props.weekBeginning}
