@@ -2,7 +2,8 @@ import React from 'react';
 
 export default function Row(props) {
 
-    const currentNumber = props.todo.reduce((a, b) => a + b, 0);
+    const onesAndZeroes = props.todo.map(n => n = (n >= 1 ? 1 : 0));
+    const currentNumber = onesAndZeroes.reduce((a, b) => a + b, 0);
     const tooHigh = currentNumber > +props.number;
     const tooLow = currentNumber < +props.number;
 
@@ -35,7 +36,7 @@ export default function Row(props) {
                     onClick={props.onChangeDay}
                     className='week-spots'>
                     <div
-                        className={'spot' + (day > 0 ? ' open' : '')}>
+                        className={'spot' + (day > 0 ? ' grey' : '')}>
                     </div>
                 </td>
             )}

@@ -3,7 +3,7 @@ import React from 'react';
 export default function DoRow(props) {
 
     const currentNumber = props.todo.reduce((a, b) => a + b, 0);
-    const allDone = currentNumber >= props.number * 2;
+    const allDone = currentNumber >= +props.number * 100;
 
     return (
         <tr
@@ -26,7 +26,7 @@ export default function DoRow(props) {
                     onClick={props.onDoDay}
                     className='week-spots'>
                     <div
-                        className={'spot' + (day === 2 ? ' closed' : day === 1 ? ' open' : '')}>
+                        className={'spot' + (day === 100 ? ' closed' : day === 1 ? ' open' : '')}>
                     </div>
                 </td>
             )}

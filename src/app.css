@@ -120,6 +120,11 @@ td {
   border-radius: 100%;
 }
 
+.spot.grey {
+  border: 2px solid #797979;
+  background: #c1c1c1;
+}
+
 .spot.open {
   border: var(--main-border);
   background: var(--high-color);

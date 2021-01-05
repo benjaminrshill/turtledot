@@ -132,7 +132,7 @@ class App extends React.Component {
           item = currentWeek.items.find(item => item[0] === event.currentTarget.id),
           day = event.currentTarget.dataset.day;
       if (closed > 0) {
-          item[1][day] = (item[1][day] < 2 ? 2 : 1)
+          if (item[1][day] > 0) item[1][day] = (item[1][day] === 1 ? 100 : 1);
       } else {
           item[1][day] = (item[1][day] > 0 ? 0 : 1);
       }
