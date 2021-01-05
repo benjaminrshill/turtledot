@@ -18,7 +18,11 @@ export default function Row(props) {
             onDragStart={props.onDragStart}
             onDragOver={props.onDragOver}
             onDragLeave={props.onDragLeave}
-            onDrop={props.onDrop}>
+            onDrop={props.onDrop}
+            onTouchStart={props.onBeginRemove}
+            onMouseDown={props.onBeginRemove}
+            onTouchCancel={props.onEndRemove}
+            onMouseUp={props.onEndRemove}>
             <td
                 id={props.id}
                 className='week-item left-column'>

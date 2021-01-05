@@ -3,6 +3,7 @@ import Row from '../../Table/Row';
 import '../../weeks.css';
 
 let touchData = {};
+let timer;
 
 class ArrangeWeek extends React.Component {
 
@@ -94,9 +95,18 @@ class ArrangeWeek extends React.Component {
         this.props.onMoveItemInWeek(+movedItem.dataset.index, +droppingOn.dataset.index, droppingOn.dataset.dragweek);
     }
 
+    beginRemove = (event) => {
+        timer = setTimeout(() => this.removeItem(event), 700);
+    }
+
+    endRemove = () => {
+        if (timer) clearTimeout(timer);
+    }
+
     removeItem = (event) => {
+        console.log(event.target.parentNode.dataset.dragid)
         if (window.confirm('Really remove?')) {
-            this.props.onRemoveItemFromWeek(event.currentTarget.id, this.props.weekBeginning);
+            this.props.onRemoveItemFromWeek(event.target.parentNode.dataset.dragid, this.props.weekBeginning);
         }
     }
 
@@ -145,6 +155,8 @@ class ArrangeWeek extends React.Component {
                                 onDragOver={this.onDragOver}
                                 onDragLeave={this.onDragLeave}
                                 onDrop={this.onDrop}
+                                onBeginRemove={this.beginRemove}
+                                onEndRemove={this.endRemove}
                             />
                         )}
                         </tbody>
