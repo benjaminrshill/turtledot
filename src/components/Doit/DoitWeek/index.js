@@ -19,11 +19,11 @@ class DoitWeek extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.createWeek().then();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
         if (prevProps !== this.props) {
             this.createWeek().then();
         }

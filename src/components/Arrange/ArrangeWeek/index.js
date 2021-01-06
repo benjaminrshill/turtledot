@@ -19,18 +19,15 @@ class ArrangeWeek extends React.Component {
                     todo: [0,0,0,0,0,0,0]
                 }
             ],
-            unselected: [],
-            initialX: 0,
-            moveX: 0,
-            finalX: 0
+            unselected: []
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         this.createWeek().then();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
         if (prevProps !== this.props) {
             this.createWeek().then();
         }
@@ -105,9 +102,9 @@ class ArrangeWeek extends React.Component {
 
     removeItem = (event) => {
         console.log(event.target.parentNode.dataset.dragid)
-        if (window.confirm('Really remove?')) {
-            this.props.onRemoveItemFromWeek(event.target.parentNode.dataset.dragid, this.props.weekBeginning);
-        }
+        // if (window.confirm('Really remove?')) {
+        //     this.props.onRemoveItemFromWeek(event.target.parentNode.dataset.dragid, this.props.weekBeginning);
+        // }
     }
 
     saveDay = (event) => {

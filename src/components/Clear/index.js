@@ -1,18 +1,27 @@
 import React from 'react';
+import './clear.css';
 
 export default function Clear(props) {
 
     return (
         <main>
-            <button>
-                clear items
-            </button>
-            <button>
-                clear weeks
-            </button>
-            <button>
-                clear all
-            </button>
+            <section className='clear'>
+                <button
+                    className='clear-button'
+                    onClick={props.onClearItems}>
+                    clear items
+                </button>
+                <button
+                    className='clear-button'
+                    onClick={props.onClearWeeks}>
+                    clear weeks
+                </button>
+                <button
+                    className='clear-button'
+                    onClick={props.onClearAll}>
+                    clear all
+                </button>
+            </section>
         </main>
     );
 }

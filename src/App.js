@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Items from './components/Items';
 import Arrange from './components/Arrange';
 import Doit from "./components/Doit";
@@ -30,12 +30,12 @@ class App extends React.Component {
       this.sortColor = sortColor.bind(this);
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
       this.getItems();
       this.getWeeks();
   }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {
+  componentDidUpdate = (prevProps, prevState, snapshot) => {
       if (prevProps !== this.props) {
           this.getItems();
           this.getWeeks();
@@ -144,6 +144,44 @@ class App extends React.Component {
       });
   }
 
+  clearItems = () => {
+      if (window.confirm('Really delete all items? This cannot be undone!')) {
+          localStorage.removeItem('items');
+          this.setState({
+              items: []
+          });
+      }
+  }
+
+  clearWeeks = () => {
+      if (window.confirm('Really delete all weeks? This cannot be undone!')) {
+          localStorage.removeItem('weeks');
+          this.setState({
+              weeks: [
+                  {
+                      date: '',
+                      items: []
+                  }
+              ]
+          });
+      }
+  }
+
+  clearAll = () => {
+      if (window.confirm('Really delete all data? This cannot be undone!')) {
+          localStorage.clear();
+          this.setState({
+              items: [],
+              weeks: [
+                  {
+                      date: '',
+                      items: []
+                  }
+              ]
+          });
+      }
+  }
+
   render() {
       return (
           <Router>
@@ -167,7 +205,7 @@ class App extends React.Component {
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
-                  <Route path='/'>
+                  <Route path='/Doit'>
                       <Doit
                           scida={this.state}
                           onChangeDay={this.changeDay}
@@ -178,7 +216,14 @@ class App extends React.Component {
                       />
                   </Route>
                   <Route path='/Clear'>
-                      <Clear />
+                      <Clear
+                          onClearItems={this.clearItems}
+                          onClearWeeks={this.clearWeeks}
+                          onClearAll={this.clearAll}
+                      />
+                  </Route>
+                  <Route exact path="/">
+                      <Redirect to="/Doit" />
                   </Route>
               </Switch>
               <Nav />
