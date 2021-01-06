@@ -2,7 +2,7 @@
   "name": "scida",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://benjaminrshill.github.io/scida/",
+  "homepage": "https://benjaminrshill.github.io/scida",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.2",

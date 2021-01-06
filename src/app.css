@@ -34,7 +34,7 @@ button.plus-sign {
   line-height: 0;
 }
 
-button.delete {
+button.delete, .delete {
   transform: rotate(-45deg);
 }
 

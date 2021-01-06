@@ -2,11 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Items from './components/Items';
 import Arrange from './components/Arrange';
+import Doit from "./components/Doit";
+import Clear from "./components/Clear";
 import Header from './components/Header';
 import Nav from './components/Nav';
 import sortColor from "./functions/sortColor";
 import './app.css';
-import Doit from "./components/Doit";
 
 class App extends React.Component {
 
@@ -166,7 +167,7 @@ class App extends React.Component {
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
-                  <Route path='/Doit'>
+                  <Route path='/'>
                       <Doit
                           scida={this.state}
                           onChangeDay={this.changeDay}
@@ -175,6 +176,9 @@ class App extends React.Component {
                           onRemoveItemFromWeek={this.removeItemFromWeek}
                           onNewItemToState={this.newItemToState}
                       />
+                  </Route>
+                  <Route path='/Clear'>
+                      <Clear />
                   </Route>
               </Switch>
               <Nav />

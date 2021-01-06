@@ -21,7 +21,7 @@ export default function Nav() {
                     Arrange
                 </div>
             </NavLink>
-            <NavLink to='/Doit' className='menu-item' activeClassName='here'>
+            <NavLink to='/' className='menu-item' activeClassName='here'>
                 <div className='menu-icon'>
                     <span className='done'></span>
                 </div>
@@ -29,12 +29,12 @@ export default function Nav() {
                     Doit!
                 </div>
             </NavLink>
-            <NavLink to='/History' className='menu-item' activeClassName='here'>
-                <div className='menu-icon'>
-                    &#8592;
+            <NavLink to='/Clear' className='menu-item' activeClassName='here'>
+                <div className='menu-icon delete'>
+                    +
                 </div>
                 <div className='menu-text'>
-                    History
+                    Clear
                 </div>
             </NavLink>
         </nav>
