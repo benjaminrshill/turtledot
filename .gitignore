@@ -12,6 +12,7 @@
 /build
 
 # misc
+/stuff
 .idea
 .eslintcache
 .DS_Store

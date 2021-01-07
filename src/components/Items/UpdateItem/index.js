@@ -36,7 +36,15 @@ class UpdateItem extends React.Component {
     }
 
     updateItem = () => {
-        if (this.state.text.length > 0) this.props.onUpdateItem({...this.state});
+        if (this.state.text.length > 0) {
+            this.props.onUpdateItem({...this.state});
+            this.setState({
+                id: '',
+                text: '',
+                number: 1,
+                color: 'color0'
+            });
+        }
     }
 
     render() {

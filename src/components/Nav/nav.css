@@ -36,9 +36,12 @@ a {
     display: inline-block;
     width: 2rem;
     height: 2rem;
-    border: var(--main-border);
     background: #c1c1c1;
     border-radius: 100%;
+}
+
+.menu-icon span.menu-icon-doit {
+    background: var(--line-color);
 }
 
 .menu-text {
@@ -47,10 +50,12 @@ a {
     text-transform: uppercase;
 }
 
+
 .here {
-    color: #c1c1c1;
+    color: #1dff75;
 }
 
 .menu-item.here .menu-icon span {
-    border-color: #c1c1c1;
+    background: #1dff75;
+    border-color: #1dff75;
 }

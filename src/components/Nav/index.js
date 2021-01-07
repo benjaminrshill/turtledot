@@ -23,7 +23,7 @@ export default function Nav() {
             </NavLink>
             <NavLink to='/Doit' className='menu-item' activeClassName='here'>
                 <div className='menu-icon'>
-                    <span className='done'></span>
+                    <span className='menu-icon-doit'></span>
                 </div>
                 <div className='menu-text'>
                     Doit!
