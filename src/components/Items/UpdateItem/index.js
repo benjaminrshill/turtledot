@@ -12,7 +12,7 @@ class UpdateItem extends React.Component {
         };
     }
 
-    componentDidMount() {
+    componentDidMount = () => {
         if (this.props.id) this.setState({
             id: this.props.id,
             text: this.props.text,

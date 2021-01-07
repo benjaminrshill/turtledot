@@ -10,10 +10,17 @@ class Item extends React.Component {
         };
     }
 
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+        if (prevProps !== this.props && this.props.currentlyAdding) {
+            this.cancelEdit();
+        }
+    }
+
     startEdit = () => {
         this.setState({
             editing: true
         });
+        this.props.cancelAdding();
     }
 
     cancelEdit = () => {
@@ -33,8 +40,7 @@ class Item extends React.Component {
         });
     }
 
-    render()
-    {
+    render() {
         return (
             <div>
             {this.state.editing ?

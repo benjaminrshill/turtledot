@@ -6,6 +6,25 @@ import './items.css';
 
 class Items extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            adding: false
+        };
+    }
+
+    newItem = () => {
+        this.setState({
+            adding: true
+        });
+    }
+
+    cancelNewItem = () => {
+        this.setState({
+            adding: false
+        });
+    }
+
     addItem = (data) => {
         let item = {
             id: uuidv4(),
@@ -50,14 +69,25 @@ class Items extends React.Component {
                         number={item.number}
                         color={item.color}
                         colors={this.props.colors}
+                        currentlyAdding={this.state.adding}
                         onEditIteminState={this.editItemInState}
+                        cancelAdding={this.cancelNewItem}
                         onDeleteItem={this.deleteItem}
                     />
                 )}
-                <UpdateItem
-                    colors={this.props.colors}
-                    onUpdateItem={this.addItem}
-                />
+                {this.state.adding ?
+                    <UpdateItem
+                        colors={this.props.colors}
+                        onUpdateItem={this.addItem}
+                        onCancelUpdate={this.cancelNewItem}
+                    />
+                    :
+                    <button
+                        onClick={this.newItem}
+                        className='plus-sign add'>
+                        +
+                    </button>
+                }
             </main>
         );
     }
