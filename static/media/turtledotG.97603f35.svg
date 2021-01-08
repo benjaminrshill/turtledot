@@ -7,9 +7,11 @@
    viewBox="0 0 300 300.00001"
    height="300mm"
    width="300mm">
-
   <defs
      id="defs4609" />
+  <metadata
+     id="metadata4612">
+  </metadata>
   <g
      transform="translate(9.7192403,49.766435)"
      id="layer1">
@@ -20,7 +22,25 @@
        id="path4513" />
   </g>
   <path
-     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:6.61458339;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166651;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 218.64407,153.70419 c 0,22.57278 -11.45719,41.87144 -28.2759,55.15618 -11.42837,9.02703 -25.2546,19.21815 -40.59289,19.21815 -16.41332,-1e-5 -29.45874,-10.31092 -41.26966,-20.49381 C 93.035979,194.24742 81.355933,175.20194 81.355934,153.70419 81.355936,115.79312 112.08893,85.060127 150,85.060127 c 37.91107,-2e-6 68.64407,30.732993 68.64407,68.644063 z"
      id="path815" />
+  <circle
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path819-3"
+     cx="150"
+     cy="195.67412"
+     r="9.1587276" />
+  <circle
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path819-3-4"
+     cx="150"
+     cy="113.82065"
+     r="9.1587276" />
+  <circle
+     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     id="path819-3-0"
+     cx="150"
+     cy="154.72702"
+     r="9.1587276" />
 </svg>
