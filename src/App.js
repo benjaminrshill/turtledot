@@ -222,8 +222,8 @@ class App extends React.Component {
                           onClearAll={this.clearAll}
                       />
                   </Route>
-                  <Route exact path="/">
-                      <Redirect to="/Doit" />
+                  <Route path='/'>
+                      <Redirect to='/Doit' />
                   </Route>
               </Switch>
               <Nav />
