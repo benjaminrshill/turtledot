@@ -15,7 +15,7 @@
 }
 
 body {
-  background: var(--base-color) url('tuttledotG.svg') center 20vh/150vw no-repeat;
+  background: var(--base-color) url('turtledotG.svg') center 20vh/150vw no-repeat;
 }
 
 @media screen and (min-height: 800px) {

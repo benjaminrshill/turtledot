@@ -92,19 +92,10 @@ class ArrangeWeek extends React.Component {
         this.props.onMoveItemInWeek(+movedItem.dataset.index, +droppingOn.dataset.index, droppingOn.dataset.dragweek);
     }
 
-    beginRemove = (event) => {
-        timer = setTimeout(() => this.removeItem(event), 700);
-    }
-
-    endRemove = () => {
-        if (timer) clearTimeout(timer);
-    }
-
     removeItem = (event) => {
-        console.log(event.target.parentNode.dataset.dragid)
-        // if (window.confirm('Really remove?')) {
-        //     this.props.onRemoveItemFromWeek(event.target.parentNode.dataset.dragid, this.props.weekBeginning);
-        // }
+        if (window.confirm('Really remove?')) {
+            this.props.onRemoveItemFromWeek(event.target.value, this.props.weekBeginning);
+        }
     }
 
     saveDay = (event) => {
@@ -152,8 +143,7 @@ class ArrangeWeek extends React.Component {
                                 onDragOver={this.onDragOver}
                                 onDragLeave={this.onDragLeave}
                                 onDrop={this.onDrop}
-                                onBeginRemove={this.beginRemove}
-                                onEndRemove={this.endRemove}
+                                onRemoveItem={this.removeItem}
                             />
                         )}
                         </tbody>

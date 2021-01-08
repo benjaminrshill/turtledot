@@ -29,12 +29,12 @@ export default function Nav() {
                     Doit!
                 </div>
             </NavLink>
-            <NavLink to='/Clear' className='menu-item' activeClassName='here'>
-                <div className='menu-icon delete'>
-                    +
+            <NavLink to='/Settings' className='menu-item' activeClassName='here'>
+                <div className='menu-icon'>
+                    &#8230;
                 </div>
                 <div className='menu-text'>
-                    Clear
+                    Settings
                 </div>
             </NavLink>
         </nav>

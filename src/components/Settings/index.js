@@ -1,7 +1,7 @@
 import React from 'react';
-import './clear.css';
+import './settings.css';
 
-export default function Clear(props) {
+export default function Settings(props) {
 
     return (
         <main>

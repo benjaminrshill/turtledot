@@ -3,7 +3,7 @@ import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-d
 import Items from './components/Items';
 import Arrange from './components/Arrange';
 import Doit from "./components/Doit";
-import Clear from "./components/Clear";
+import Settings from './components/Settings';
 import Header from './components/Header';
 import Nav from './components/Nav';
 import sortColor from "./functions/sortColor";
@@ -215,8 +215,8 @@ class App extends React.Component {
                           onNewItemToState={this.newItemToState}
                       />
                   </Route>
-                  <Route path='/Clear'>
-                      <Clear
+                  <Route path='/Settings'>
+                      <Settings
                           onClearItems={this.clearItems}
                           onClearWeeks={this.clearWeeks}
                           onClearAll={this.clearAll}

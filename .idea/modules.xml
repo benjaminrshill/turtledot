@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/scida.iml" filepath="$PROJECT_DIR$/.idea/scida.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/turtledot.iml" filepath="$PROJECT_DIR$/.idea/turtledot.iml" />
     </modules>
   </component>
 </project>

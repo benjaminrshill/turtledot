@@ -1,11 +1,11 @@
 import React from 'react';
-import tuttledot from './tuttledot.svg';
+import turtledot from './turtledot.svg';
 import './header.css';
 
 export default function Header(props) {
     return (
         <header>
-            <img src={tuttledot} className='logo' alt='logo' />
+            <img src={turtledot} className='logo' alt='logo' />
         </header>
     );
 }

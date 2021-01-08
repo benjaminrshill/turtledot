@@ -14,7 +14,7 @@ export default function DoRow(props) {
                 className='week-item left-column'>
                 {props.text}
             </td>
-            <td className={'week-item-number'}>
+            <td className={'main-cell week-item-number'}>
                 {props.number}
             </td>
             {props.todo.map((day, i) =>
@@ -24,7 +24,7 @@ export default function DoRow(props) {
                     data-day={i}
                     data-week={props.weekBeginning}
                     onClick={props.onDoDay}
-                    className='week-spots'>
+                    className='main-cell week-spots'>
                     <div
                         className={'spot' + (day === 100 ? ' closed' : day === 1 ? ' open' : '')}>
                     </div>

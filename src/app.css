@@ -17,6 +17,7 @@ main {
 }
 
 button {
+  cursor: pointer;
   width: 5rem;
   height: 5rem;
   font-family: var(--main-font);

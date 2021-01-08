@@ -18,17 +18,19 @@ export default function Row(props) {
             onDragStart={props.onDragStart}
             onDragOver={props.onDragOver}
             onDragLeave={props.onDragLeave}
-            onDrop={props.onDrop}
-            onTouchStart={props.onBeginRemove}
-            onMouseDown={props.onBeginRemove}
-            onTouchCancel={props.onEndRemove}
-            onMouseUp={props.onEndRemove}>
+            onDrop={props.onDrop}>
             <td
                 id={props.id}
                 className='week-item left-column'>
+                <button
+                    className='week-item-delete'
+                    value={props.id}
+                    onClick={props.onRemoveItem}>
+                    &#10006;
+                </button>
                 {props.text}
             </td>
-            <td className={'week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
+            <td className={'main-cell week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
                 {props.number}
             </td>
             {props.todo.map((day, i) =>
@@ -38,7 +40,7 @@ export default function Row(props) {
                     data-day={i}
                     data-week={props.weekBeginning}
                     onClick={props.onChangeDay}
-                    className='week-spots'>
+                    className='main-cell week-spots'>
                     <div
                         className={'spot' + (day > 0 ? ' grey' : '')}>
                     </div>

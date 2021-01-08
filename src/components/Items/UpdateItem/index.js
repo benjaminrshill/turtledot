@@ -31,7 +31,7 @@ class UpdateItem extends React.Component {
 
     setColor = (event) => {
         this.setState({
-            color: event.target.id
+            color: event.target.value
         });
     }
 
@@ -79,12 +79,12 @@ class UpdateItem extends React.Component {
                 <div className='edit-box'>
                     <div className='palette'>
                         {this.props.colors.map(color =>
-                            <div
+                            <button
                                 key={color}
-                                id={color}
+                                value={color}
                                 className={'palette-square ' + color}
                                 onClick={this.setColor}>
-                            </div>
+                            </button>
                         )}
                     </div>
                     <div className='edit-box-buttons'>

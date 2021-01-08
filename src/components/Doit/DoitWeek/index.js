@@ -86,7 +86,7 @@ class DoitWeek extends React.Component {
                                 color={item.color}
                                 todo={item.todo}
                                 weekBeginning={this.props.weekBeginning}
-                                onDoDay={this.props.editable && this.doDay}
+                                onDoDay={this.props.editable ? this.doDay : undefined}
                             />
                         )}
                         </tbody>
