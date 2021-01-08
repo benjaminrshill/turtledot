@@ -222,7 +222,7 @@ class App extends React.Component {
                           onClearAll={this.clearAll}
                       />
                   </Route>
-                  <Route path='*'>
+                  <Route path='/'>
                       <Redirect to='/Doit' />
                   </Route>
               </Switch>
