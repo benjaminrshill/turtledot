@@ -105,6 +105,25 @@ class App extends React.Component {
       });
   }
 
+  addAllItemsToWeek = (ids, week) => {
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week);
+      if (currentWeek === undefined) {
+          let newWeek = {
+              date: week,
+              items: []
+          }
+          ids.forEach(id => newWeek.items.push([id, [0,0,0,0,0,0,0]]));
+          weeks.push(newWeek);
+      } else {
+          ids.forEach(id => currentWeek.items.push([id, [0,0,0,0,0,0,0]]));
+      }
+      localStorage.setItem('weeks', JSON.stringify(weeks));
+      this.setState({
+          weeks: [...weeks]
+      });
+  }
+
   moveItemInWeek = (dragged, dropped, week) => {
       let weeks = [...this.state.weeks],
           currentWeek = weeks.find(needle => needle.date === week),
@@ -200,19 +219,15 @@ class App extends React.Component {
                           scida={this.state}
                           onChangeDay={this.changeDay}
                           onAddItemToWeek={this.addItemToWeek}
+                          onAddAllItemsToWeek={this.addAllItemsToWeek}
                           onMoveItemInWeek={this.moveItemInWeek}
                           onRemoveItemFromWeek={this.removeItemFromWeek}
-                          onNewItemToState={this.newItemToState}
                       />
                   </Route>
                   <Route path='/Doit'>
                       <Doit
                           scida={this.state}
                           onChangeDay={this.changeDay}
-                          onAddItemToWeek={this.addItemToWeek}
-                          onMoveItemInWeek={this.moveItemInWeek}
-                          onRemoveItemFromWeek={this.removeItemFromWeek}
-                          onNewItemToState={this.newItemToState}
                       />
                   </Route>
                   <Route path='/Settings'>

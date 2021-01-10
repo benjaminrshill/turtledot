@@ -16,6 +16,7 @@ class Arrange extends React.Component {
                     scida={this.props.scida}
                     weekBeginning={this.props.scida.nextWeekBeginning}
                     onAddItemToWeek={this.props.onAddItemToWeek}
+                    onAddAllItemsToWeek={this.props.onAddAllItemsToWeek}
                     onMoveItemInWeek={this.props.onMoveItemInWeek}
                     onRemoveItemFromWeek={this.props.onRemoveItemFromWeek}
                     onChangeDay={this.props.onChangeDay}
@@ -26,6 +27,7 @@ class Arrange extends React.Component {
                     scida={this.props.scida}
                     weekBeginning={this.props.scida.thisWeekBeginning}
                     onAddItemToWeek={this.props.onAddItemToWeek}
+                    onAddAllItemsToWeek={this.props.onAddAllItemsToWeek}
                     onMoveItemInWeek={this.props.onMoveItemInWeek}
                     onRemoveItemFromWeek={this.props.onRemoveItemFromWeek}
                     onChangeDay={this.props.onChangeDay}

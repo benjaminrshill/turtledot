@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from '../../Table/Row';
 import '../../weeks.css';
+import '../arrange.css';
 
 let touchData = {};
 let timer;
@@ -54,7 +55,13 @@ class ArrangeWeek extends React.Component {
     }
 
     saveWeek = (event) => {
-        this.props.onAddItemToWeek(event.currentTarget.id, this.props.weekBeginning);
+        this.props.onAddItemToWeek(event.currentTarget.value, this.props.weekBeginning);
+    }
+
+    addAllItems = () => {
+        let ids = [];
+        this.state.unselected.forEach(item => ids.push(item.id));
+        this.props.onAddAllItemsToWeek(ids, this.props.weekBeginning);
     }
 
     onDragStart = (event) => {
@@ -151,11 +158,16 @@ class ArrangeWeek extends React.Component {
                 </section>
                 {this.state.unselected.length > 0 &&
                 <div className='edit-box'>
+                    <button
+                        className='addAllItems'
+                        onClick={this.addAllItems}>
+                        add all
+                    </button>
                     <div className='items-list'>
                         {this.state.unselected.map(item =>
                             <button
                                 key={item.id + this.props.weekBeginning + 'u'}
-                                id={item.id}
+                                value={item.id}
                                 className={'items-list-item ' + item.color}
                                 onClick={this.saveWeek}>
                                 {item.text}
