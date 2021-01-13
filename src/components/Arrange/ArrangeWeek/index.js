@@ -150,6 +150,7 @@ class ArrangeWeek extends React.Component {
                                 id={item.id}
                                 index={i}
                                 text={item.text}
+                                type={item.type}
                                 number={item.number}
                                 color={item.color}
                                 todo={item.todo}

@@ -6,6 +6,7 @@ class UpdateItem extends React.Component {
         super(props);
         this.state = {
             id: '',
+            type: true,
             text: '',
             number: 1,
             color: 'color0'
@@ -16,6 +17,7 @@ class UpdateItem extends React.Component {
         if (this.props.id) this.setState({
             id: this.props.id,
             text: this.props.text,
+            type: this.props.type,
             number: this.props.number,
             color: this.props.color
         });
@@ -41,10 +43,17 @@ class UpdateItem extends React.Component {
             this.setState({
                 id: '',
                 text: '',
+                type: true,
                 number: 1,
                 color: 'color0'
             });
         }
+    }
+
+    switchType = () => {
+        this.setState(prevState => ({
+            type: !prevState.type
+        }));
     }
 
     render() {
@@ -58,6 +67,13 @@ class UpdateItem extends React.Component {
                         onChange={this.handleInput}
                         className='text'
                     />
+                    <button
+                        name='type'
+                        value={this.state.type}
+                        onClick={this.switchType}
+                        className='type'>
+                        {this.state.type ? <div className='day spot open'></div> : '#'}
+                    </button>
                     <input
                         type='number'
                         name='number'

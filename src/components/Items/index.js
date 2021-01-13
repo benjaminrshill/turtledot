@@ -31,7 +31,7 @@ class Items extends React.Component {
             text: data.text,
             number: data.number,
             color: data.color,
-            type: 'boolean'
+            type: true
         };
         let storedItems = [];
         if (localStorage.getItem('items')) {
@@ -66,6 +66,7 @@ class Items extends React.Component {
                         key={item.id}
                         id={item.id}
                         text={item.text}
+                        type={item.type}
                         number={item.number}
                         color={item.color}
                         colors={this.props.colors}

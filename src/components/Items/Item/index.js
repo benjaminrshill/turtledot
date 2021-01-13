@@ -1,5 +1,6 @@
 import React from 'react';
 import UpdateItem from '../UpdateItem';
+import '../../weeks.css';
 
 class Item extends React.Component {
 
@@ -47,6 +48,7 @@ class Item extends React.Component {
                 <UpdateItem
                     id={this.props.id}
                     text={this.props.text}
+                    type={this.props.type}
                     number={this.props.number}
                     color={this.props.color}
                     colors={this.props.colors}
@@ -60,6 +62,11 @@ class Item extends React.Component {
                         className='text'>
                         {this.props.text}
                     </div>
+                    <button
+                        onClick={this.startEdit}
+                        className='type'>
+                        {this.props.type === 'boolean' ? <div className='day spot open'></div> : '#'}
+                    </button>
                     <button
                         onClick={this.startEdit}
                         className='number'>

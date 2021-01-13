@@ -23,9 +23,9 @@ export default function Row(props) {
                 id={props.id}
                 className='week-item left-column'>
                 <button
-                    className='week-item-delete'
                     value={props.id}
-                    onClick={props.onRemoveItem}>
+                    onClick={props.onRemoveItem}
+                    className='week-item-delete'>
                     &#10006;
                 </button>
                 {props.text}
