@@ -4,3 +4,7 @@
     background: var(--line-color);
     border-radius: 0;
 }
+
+.addAllItems.copy {
+    background: #240050;
+}

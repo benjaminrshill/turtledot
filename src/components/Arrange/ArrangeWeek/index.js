@@ -4,7 +4,6 @@ import '../../weeks.css';
 import '../arrange.css';
 
 let touchData = {};
-let timer;
 
 class ArrangeWeek extends React.Component {
 
@@ -20,7 +19,8 @@ class ArrangeWeek extends React.Component {
                     todo: [0,0,0,0,0,0,0]
                 }
             ],
-            unselected: []
+            unselected: [],
+            copyWeek: []
         };
     }
 
@@ -62,6 +62,15 @@ class ArrangeWeek extends React.Component {
         let ids = [];
         this.state.unselected.forEach(item => ids.push(item.id));
         this.props.onAddAllItemsToWeek(ids, this.props.weekBeginning);
+    }
+
+    copyAllItems = () => {
+        if (localStorage.getItem('weeks')) {
+            const weeks = JSON.parse(localStorage.getItem('weeks'));
+            const copyWeek = weeks.find(week => week.date === this.props.scida.thisWeekBeginning);
+            copyWeek.items.forEach(item => item[1].forEach((number, index, array) => {if (array[index] > 1) array[index] = 1}));
+            this.props.onCopyAllFromThisWeek(this.props.weekBeginning, copyWeek.items);
+        }
     }
 
     onDragStart = (event) => {
@@ -158,10 +167,17 @@ class ArrangeWeek extends React.Component {
                 </section>
                 {this.state.unselected.length > 0 &&
                 <div className='edit-box'>
+                    {this.state.selected.length < 1 && this.props.weekName === 'Next Week' &&
+                    <button
+                        className='addAllItems copy'
+                        onClick={this.copyAllItems}>
+                        copy schedule from this week
+                    </button>
+                    }
                     <button
                         className='addAllItems'
                         onClick={this.addAllItems}>
-                        add all
+                        add all items
                     </button>
                     <div className='items-list'>
                         {this.state.unselected.map(item =>

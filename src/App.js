@@ -124,6 +124,24 @@ class App extends React.Component {
       });
   }
 
+  copyAllFromThisWeek = (week, copyWeek) => {
+      let weeks = [...this.state.weeks],
+          currentWeek = weeks.find(needle => needle.date === week);
+      if (currentWeek === undefined) {
+          let newWeek = {
+              date: week,
+              items: [...copyWeek]
+          }
+          weeks.push(newWeek);
+      } else {
+          currentWeek.items = [...copyWeek];
+      }
+      localStorage.setItem('weeks', JSON.stringify(weeks));
+      this.setState({
+          weeks: [...weeks]
+      });
+  }
+
   moveItemInWeek = (dragged, dropped, week) => {
       let weeks = [...this.state.weeks],
           currentWeek = weeks.find(needle => needle.date === week),
@@ -220,6 +238,7 @@ class App extends React.Component {
                           onChangeDay={this.changeDay}
                           onAddItemToWeek={this.addItemToWeek}
                           onAddAllItemsToWeek={this.addAllItemsToWeek}
+                          onCopyAllFromThisWeek={this.copyAllFromThisWeek}
                           onMoveItemInWeek={this.moveItemInWeek}
                           onRemoveItemFromWeek={this.removeItemFromWeek}
                       />
