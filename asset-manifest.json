@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/turtledot/static/css/main.754acc9f.chunk.css",
-    "main.js": "/turtledot/static/js/main.c5452713.chunk.js",
-    "main.js.map": "/turtledot/static/js/main.c5452713.chunk.js.map",
+    "main.css": "/turtledot/static/css/main.2d432fa4.chunk.css",
+    "main.js": "/turtledot/static/js/main.c93e9507.chunk.js",
+    "main.js.map": "/turtledot/static/js/main.c93e9507.chunk.js.map",
     "runtime-main.js": "/turtledot/static/js/runtime-main.38018f10.js",
     "runtime-main.js.map": "/turtledot/static/js/runtime-main.38018f10.js.map",
     "static/js/2.04550bfb.chunk.js": "/turtledot/static/js/2.04550bfb.chunk.js",
     "static/js/2.04550bfb.chunk.js.map": "/turtledot/static/js/2.04550bfb.chunk.js.map",
     "index.html": "/turtledot/index.html",
-    "static/css/main.754acc9f.chunk.css.map": "/turtledot/static/css/main.754acc9f.chunk.css.map",
+    "static/css/main.2d432fa4.chunk.css.map": "/turtledot/static/css/main.2d432fa4.chunk.css.map",
     "static/js/2.04550bfb.chunk.js.LICENSE.txt": "/turtledot/static/js/2.04550bfb.chunk.js.LICENSE.txt",
     "static/media/weeks.css": "/turtledot/static/media/arrowUp.db38afd6.svg",
     "static/media/turtledot.8a80777e.svg": "/turtledot/static/media/turtledot.8a80777e.svg",
@@ -17,7 +17,7 @@
   "entrypoints": [
     "static/js/runtime-main.38018f10.js",
     "static/js/2.04550bfb.chunk.js",
-    "static/css/main.754acc9f.chunk.css",
-    "static/js/main.c5452713.chunk.js"
+    "static/css/main.2d432fa4.chunk.css",
+    "static/js/main.c93e9507.chunk.js"
   ]
 }
