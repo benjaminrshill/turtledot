@@ -29,9 +29,9 @@ class Items extends React.Component {
         let item = {
             id: uuidv4(),
             text: data.text,
+            type: data.type,
             number: data.number,
-            color: data.color,
-            type: true
+            color: data.color
         };
         let storedItems = [];
         if (localStorage.getItem('items')) {
