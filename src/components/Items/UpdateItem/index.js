@@ -38,7 +38,7 @@ class UpdateItem extends React.Component {
     }
 
     updateItem = () => {
-        if (this.state.text.length > 0) {
+        if (this.validate()) {
             this.props.onUpdateItem({...this.state});
             this.setState({
                 id: '',
@@ -54,6 +54,21 @@ class UpdateItem extends React.Component {
         this.setState(prevState => ({
             type: !prevState.type
         }));
+        setTimeout(() => console.log(this.state), 50)
+    }
+
+    validate = () => {
+        if (this.state.text.length > 0 && this.state.text.length < 12 && this.state.number > 0) {
+            if (this.state.type) {
+                if (this.state.number < 8) {
+                    return true;
+                }
+            } else {
+                if (this.state.number < 100000) {
+                    return true;
+                }
+            }
+        } else return false;
     }
 
     render() {
@@ -78,7 +93,7 @@ class UpdateItem extends React.Component {
                         type='number'
                         name='number'
                         min='1'
-                        max='35'
+                        max='20000'
                         value={this.state.number}
                         onChange={this.handleInput}
                         className='number'

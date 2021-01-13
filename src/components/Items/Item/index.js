@@ -65,7 +65,7 @@ class Item extends React.Component {
                     <button
                         onClick={this.startEdit}
                         className='type'>
-                        {this.props.type === 'boolean' ? <div className='day spot open'></div> : '#'}
+                        {this.props.type ? <div className='day spot open'></div> : '#'}
                     </button>
                     <button
                         onClick={this.startEdit}

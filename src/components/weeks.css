@@ -42,6 +42,14 @@ td {
     width: 5rem;
 }
 
+.type-cell {
+    font-size: 3rem;
+}
+
+.type-cell.grey {
+    color: #797979;
+}
+
 .week {
     margin: 0 auto 5vh auto;
 }

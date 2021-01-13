@@ -18,7 +18,7 @@
 }
 
 .item .text {
-    width: calc(40rem - 35px);
+    width: calc(33rem - 35px);
     height: 5rem;
     font-size: 3rem;
     line-height: 5rem;
@@ -29,8 +29,8 @@
 }
 
 .item .number {
-    width: 5rem;
-    border-radius: 100%;
+    width: 8rem;
+    border-radius: 5rem;
     -moz-appearance: textfield;
 }
 

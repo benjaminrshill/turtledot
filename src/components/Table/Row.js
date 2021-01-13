@@ -1,4 +1,5 @@
 import React from 'react';
+import cutNumber from "../../functions/cutNumber";
 
 export default function Row(props) {
 
@@ -6,6 +7,7 @@ export default function Row(props) {
     const currentNumber = onesAndZeroes.reduce((a, b) => a + b, 0);
     const tooHigh = currentNumber > +props.number;
     const tooLow = currentNumber < +props.number;
+    const cutNum = cutNumber(props.number);
 
     return (
         <tr
@@ -31,7 +33,7 @@ export default function Row(props) {
                 {props.text}
             </td>
             <td className={'main-cell week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
-                {props.number}
+                {cutNum}
             </td>
             {props.todo.map((day, i) =>
                 <td
@@ -41,8 +43,8 @@ export default function Row(props) {
                     data-week={props.weekBeginning}
                     onClick={props.onChangeDay}
                     className='main-cell week-spots'>
-                    <div
-                        className={'spot' + (day > 0 ? ' grey' : '')}>
+                    <div className={!props.type ? 'type-cell grey' : 'spot' + (day > 0 ? ' grey' : '')}>
+                        {/*{!props.type ? goalNumber : ''}*/}
                     </div>
                 </td>
             )}
