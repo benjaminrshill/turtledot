@@ -1,16 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg4615"
    version="1.1"
    viewBox="0 0 300 300.00001"
    height="300mm"
-   width="300mm">
+   width="300mm"
+   sodipodi:docname="turtledotG.svg"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="843"
+     inkscape:window-height="486"
+     id="namedview11"
+     showgrid="false"
+     inkscape:zoom="0.20813889"
+     inkscape:cx="566.92913"
+     inkscape:cy="566.92913"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg4615" />
   <defs
      id="defs4609" />
   <metadata
      id="metadata4612">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
   </metadata>
   <g
      transform="translate(9.7192403,49.766435)"
@@ -25,18 +60,6 @@
      style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166651;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      d="m 218.64407,153.70419 c 0,22.57278 -11.45719,41.87144 -28.2759,55.15618 -11.42837,9.02703 -25.2546,19.21815 -40.59289,19.21815 -16.41332,-1e-5 -29.45874,-10.31092 -41.26966,-20.49381 C 93.035979,194.24742 81.355933,175.20194 81.355934,153.70419 81.355936,115.79312 112.08893,85.060127 150,85.060127 c 37.91107,-2e-6 68.64407,30.732993 68.64407,68.644063 z"
      id="path815" />
-  <circle
-     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="path819-3"
-     cx="150"
-     cy="195.67412"
-     r="9.1587276" />
-  <circle
-     style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-     id="path819-3-4"
-     cx="150"
-     cy="113.82065"
-     r="9.1587276" />
   <circle
      style="opacity:1;fill:none;fill-opacity:1;stroke:#e9e9e9;stroke-width:5.29166671;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
      id="path819-3-0"
