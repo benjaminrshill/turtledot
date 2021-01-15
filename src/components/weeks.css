@@ -43,11 +43,16 @@ td {
 }
 
 .type-cell {
-    font-size: 3rem;
+    font-size: 2rem;
 }
 
 .type-cell.grey {
     color: #797979;
+}
+
+.type-cell.full-grey {
+    color: #b8b8b8;
+    background: #b8b8b8;
 }
 
 .week {

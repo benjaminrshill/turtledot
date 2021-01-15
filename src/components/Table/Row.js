@@ -1,53 +1,92 @@
 import React from 'react';
 import cutNumber from "../../functions/cutNumber";
 
-export default function Row(props) {
+class Row extends React.Component {
 
-    const onesAndZeroes = props.todo.map(n => n = (n >= 1 ? 1 : 0));
-    const currentNumber = onesAndZeroes.reduce((a, b) => a + b, 0);
-    const tooHigh = currentNumber > +props.number;
-    const tooLow = currentNumber < +props.number;
-    const cutNum = cutNumber(props.number);
+    constructor(props) {
+        super(props);
+        this.state = {
+            editing: false,
+            onesAndZeroes: '',
+            currentNumber: '',
+            tooHigh: '',
+            tooLow: '',
+            cutNum: '',
+            goalNum: ''
+        }
+        this.cutNumber = cutNumber.bind(this);
+    }
 
-    return (
-        <tr
-            draggable={true}
-            id={props.id + props.weekBeginning}
-            data-index={props.index}
-            data-dragid={props.id}
-            data-dragweek={props.weekBeginning}
-            className={props.color}
-            onDragStart={props.onDragStart}
-            onDragOver={props.onDragOver}
-            onDragLeave={props.onDragLeave}
-            onDrop={props.onDrop}>
-            <td
-                id={props.id}
-                className='week-item left-column'>
-                <button
-                    value={props.id}
-                    onClick={props.onRemoveItem}
-                    className='week-item-delete'>
-                    &#10006;
-                </button>
-                {props.text}
-            </td>
-            <td className={'main-cell week-item-number' + (tooHigh ? ' week-number-arrow-down' : tooLow ? ' week-number-arrow-up' : '')}>
-                {cutNum}
-            </td>
-            {props.todo.map((day, i) =>
+    componentDidMount = () => {
+        this.doNumbers();
+    }
+
+    componentDidUpdate = (prevProps, prevState, snapshot) => {
+        if (prevProps !== this.props) this.doNumbers();
+    }
+
+    doNumbers = () => {
+        const onesAndZeroes = this.props.todo.map(n => n = (n >= 1 ? 1 : 0));
+        const currentNumber = onesAndZeroes.reduce((a, b) => a + b, 0);
+        const tooHigh = currentNumber > +this.props.number;
+        const tooLow = currentNumber < +this.props.number;
+        const cutNum = this.cutNumber(this.props.number);
+        const goalNum = this.cutNumber(this.props.number / currentNumber);
+        this.setState({
+            onesAndZeroes: onesAndZeroes,
+            currentNumber: currentNumber,
+            tooHigh: tooHigh,
+            tooLow: tooLow,
+            cutNum: cutNum,
+            goalNum: goalNum
+        });
+    }
+
+    render() {
+        return (
+            <tr
+                draggable={true}
+                id={this.props.id + this.props.weekBeginning}
+                data-index={this.props.index}
+                data-dragid={this.props.id}
+                data-dragweek={this.props.weekBeginning}
+                className={this.props.color}
+                onDragStart={this.props.onDragStart}
+                onDragOver={this.props.onDragOver}
+                onDragLeave={this.props.onDragLeave}
+                onDrop={this.props.onDrop}>
                 <td
-                    key={props.id + i}
-                    id={props.id}
-                    data-day={i}
-                    data-week={props.weekBeginning}
-                    onClick={props.onChangeDay}
-                    className='main-cell week-spots'>
-                    <div className={!props.type ? 'type-cell grey' : 'spot' + (day > 0 ? ' grey' : '')}>
-                        {/*{!props.type ? goalNumber : ''}*/}
-                    </div>
+                    id={this.props.id}
+                    className='week-item left-column'>
+                    <button
+                        value={this.props.id}
+                        onClick={this.props.onRemoveItem}
+                        className='week-item-delete'>
+                        &#10006;
+                    </button>
+                    {this.props.text}
                 </td>
-            )}
-        </tr>
-    );
+                <td className={'main-cell week-item-number'
+                    + (this.state.tooHigh ? ' week-number-arrow-down' : this.state.tooLow ? ' week-number-arrow-up' : '')}>
+                    {this.state.cutNum}
+                </td>
+                {this.props.todo.map((day, i) =>
+                    <td
+                        key={this.props.id + i}
+                        id={this.props.id}
+                        data-day={i}
+                        data-week={this.props.weekBeginning}
+                        onClick={this.props.onChangeDay}
+                        className='main-cell week-spots'>
+                        <div className={this.props.type ? 'spot' + (day > 0 ? ' grey' : '') : 'type-cell grey'}>
+                            {!this.props.type && day > 0 ? this.state.goalNum : ''}
+                        </div>
+                    </td>
+                )}
+            </tr>
+        );
+    }
 }
+
+export default Row;
+

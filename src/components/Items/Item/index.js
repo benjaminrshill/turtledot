@@ -1,6 +1,7 @@
 import React from 'react';
 import UpdateItem from '../UpdateItem';
 import '../../weeks.css';
+import cutNumber from "../../../functions/cutNumber";
 
 class Item extends React.Component {
 
@@ -9,6 +10,7 @@ class Item extends React.Component {
         this.state = {
             editing: false
         };
+        this.cutNumber = cutNumber.bind(this);
     }
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
@@ -21,7 +23,7 @@ class Item extends React.Component {
         this.setState({
             editing: true
         });
-        this.props.cancelAdding();
+        this.props.onCancelNewItem();
     }
 
     cancelEdit = () => {
@@ -70,7 +72,7 @@ class Item extends React.Component {
                     <button
                         onClick={this.startEdit}
                         className='number'>
-                        {this.props.number}
+                        {this.cutNumber(this.props.number)}
                     </button>
                     <button
                         onClick={this.startEdit}

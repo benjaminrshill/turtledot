@@ -72,7 +72,7 @@ class Items extends React.Component {
                         colors={this.props.colors}
                         currentlyAdding={this.state.adding}
                         onEditIteminState={this.editItemInState}
-                        cancelAdding={this.cancelNewItem}
+                        onCancelNewItem={this.cancelNewItem}
                         onDeleteItem={this.deleteItem}
                     />
                 )}
