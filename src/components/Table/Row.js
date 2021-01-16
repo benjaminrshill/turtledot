@@ -62,7 +62,7 @@ class Row extends React.Component {
                         value={this.props.id}
                         onClick={this.props.onRemoveItem}
                         className='week-item-delete'>
-                        &#10006;
+                        &mdash;
                     </button>
                     {this.props.text}
                 </td>

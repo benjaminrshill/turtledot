@@ -31,7 +31,7 @@ export default function Nav() {
             </NavLink>
             <NavLink to='/Archive' className='menu-item' activeClassName='here'>
                 <div className='menu-icon'>
-                    <span className='menu-icon-doit'></span>
+                    &larr;
                 </div>
                 <div className='menu-text'>
                     Archive
