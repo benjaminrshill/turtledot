@@ -10,7 +10,7 @@ nav {
     min-height: 50px;
     max-height: 200px;
     background: var(--high-color);
-    border-top: var(--main-border);
+    box-shadow: 0 -5px 10px 0 rgba(0, 104, 14, 0.2);
 }
 
 a {
@@ -25,8 +25,6 @@ a {
 }
 
 .menu-icon {
-    width: 5rem;
-    height: 5rem;
     font-size: 5rem;
     font-weight: 300;
     border-radius: 100%;
