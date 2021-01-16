@@ -2,7 +2,7 @@ import React from 'react';
 import DoRow from "../../Table/DoRow";
 import '../../weeks.css';
 
-class DoitWeek extends React.Component {
+class ThisWeek extends React.Component {
 
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ class DoitWeek extends React.Component {
                 {
                     id: '',
                     text: '',
-                    number: 0,
+                    number: '',
                     color: '',
                     todo: [0,0,0,0,0,0,0]
                 }
@@ -20,19 +20,39 @@ class DoitWeek extends React.Component {
     }
 
     componentDidMount = () => {
-        this.createWeek().then();
+        this.props.editable ? this.createWeek() : this.getLastWeek();
     }
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
         if (prevProps !== this.props) {
-            this.createWeek().then();
+            this.props.editable ? this.createWeek() : this.getLastWeek();
         }
     }
 
-    createWeek = async () => {
+    updateArchive = () => {
+        let archive = [];
+        let lastWeek = {
+            date: this.props.scida.thisWeekBeginning,
+            items: [...this.state.items]
+        };
+        if (localStorage.getItem('archive')) {
+            archive = JSON.parse(localStorage.getItem('archive'));
+            let index = archive.findIndex(week => week.date === this.props.scida.thisWeekBeginning);
+            if (index !== null) {
+                archive[index] = lastWeek;
+            } else {
+                archive.unshift(lastWeek);
+            }
+        } else {
+            archive.unshift(lastWeek);
+        }
+        localStorage.setItem('archive', JSON.stringify(archive));
+    }
+
+    createWeek = () => {
         let items = [],
             allItems = [...this.props.scida.items];
-        let currentWeek = await this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
+        let currentWeek = this.props.scida.weeks.find(week => week.date === this.props.weekBeginning);
         if (currentWeek !== undefined) {
             currentWeek.items.forEach(week => {
                 let index = allItems.findIndex(index => index.id === week[0]);
@@ -48,6 +68,17 @@ class DoitWeek extends React.Component {
 
     doDay = (event) => {
         this.props.onChangeDay(event, this.props.weekBeginning, 1);
+        this.updateArchive();
+    }
+
+    getLastWeek = () => {
+        if (localStorage.getItem('archive')) {
+            let archive = JSON.parse(localStorage.getItem('archive'));
+            let lastWeek = archive.find(week => week.date === this.props.scida.lastWeekBeginning);
+            if (lastWeek !== undefined) this.setState({
+                items: [...lastWeek.items]
+            });
+        }
     }
 
     render() {
@@ -98,4 +129,4 @@ class DoitWeek extends React.Component {
     }
 }
 
-export default DoitWeek;
+export default ThisWeek;

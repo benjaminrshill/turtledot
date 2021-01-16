@@ -66,15 +66,14 @@ class ArrangeWeek extends React.Component {
 
     copyAllItems = () => {
         if (localStorage.getItem('weeks')) {
-            const weeks = JSON.parse(localStorage.getItem('weeks'));
-            const copyWeek = weeks.find(week => week.date === this.props.scida.thisWeekBeginning);
+            let weeks = JSON.parse(localStorage.getItem('weeks'));
+            let copyWeek = weeks.find(week => week.date === this.props.scida.thisWeekBeginning);
             copyWeek.items.forEach(item => item[1].forEach((number, index, array) => {if (array[index] > 1) array[index] = 1}));
             this.props.onCopyAllFromThisWeek(this.props.weekBeginning, copyWeek.items);
         }
     }
 
     onDragStart = (event) => {
-        // event.preventDefault();
         touchData.item = event.currentTarget.id;
     }
 

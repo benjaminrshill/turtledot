@@ -38,7 +38,6 @@ class UpdateItem extends React.Component {
     }
 
     updateItem = () => {
-        console.log(this.state)
         if (this.validate()) {
             this.props.onUpdateItem({...this.state});
             this.setState({
@@ -55,7 +54,6 @@ class UpdateItem extends React.Component {
         this.setState(prevState => ({
             type: !prevState.type
         }));
-        // setTimeout(() => console.log(this.state), 50)
     }
 
     validate = () => {

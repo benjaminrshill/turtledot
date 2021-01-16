@@ -1,5 +1,5 @@
 import React from 'react';
-import DoitWeek from "./DoitWeek";
+import ThisWeek from "./ThisWeek";
 import '../weeks.css';
 
 class Doit extends React.Component {
@@ -10,7 +10,7 @@ class Doit extends React.Component {
                 <h1>
                     Doit
                 </h1>
-                <DoitWeek
+                <ThisWeek
                     key={'thisWeek'}
                     weekName={'This Week'}
                     editable={true}
@@ -18,12 +18,12 @@ class Doit extends React.Component {
                     weekBeginning={this.props.scida.thisWeekBeginning}
                     onChangeDay={this.props.onChangeDay}
                 />
-                <DoitWeek
+                <ThisWeek
                     key={'lastWeek'}
                     weekName={'Last Week'}
                     editable={false}
                     scida={this.props.scida}
-                    weekBeginning={this.props.scida.lastWeekBeginning}
+                    weekBeginning={this.props.scida.thisWeekBeginning} // REMEMBER TO CHANGE TO LAST WEEK BEGINNING!
                 />
             </main>
         );
