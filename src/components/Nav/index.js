@@ -30,7 +30,7 @@ export default function Nav() {
                 </div>
             </NavLink>
             <NavLink to='/Archive' className='menu-item' activeClassName='here'>
-                <div className='menu-icon'>
+                <div className='menu-icon' style={{fontSize: 3 + 'rem'}}>
                     &larr;
                 </div>
                 <div className='menu-text'>

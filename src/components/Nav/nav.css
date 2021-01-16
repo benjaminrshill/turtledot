@@ -7,8 +7,6 @@ nav {
     bottom: 0;
     left: 0;
     width: 100%;
-    min-height: 50px;
-    max-height: 200px;
     background: var(--high-color);
     box-shadow: 0 -5px 10px 0 rgba(0, 104, 14, 0.2);
 }
@@ -26,6 +24,7 @@ a {
 
 .menu-icon {
     font-size: 5rem;
+    line-height: 5rem;
     font-weight: 300;
     border-radius: 100%;
 }
