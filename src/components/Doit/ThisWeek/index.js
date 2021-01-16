@@ -7,6 +7,7 @@ class ThisWeek extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            date: '',
             items: [
                 {
                     id: '',

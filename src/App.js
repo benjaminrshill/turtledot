@@ -3,9 +3,10 @@ import { Redirect, BrowserRouter as Router, Switch, Route } from 'react-router-d
 import Items from './components/Items';
 import Arrange from './components/Arrange';
 import Doit from "./components/Doit";
-import Settings from './components/Settings';
-import Header from './components/Header';
+import Archive from "./components/Archive";
 import Nav from './components/Nav';
+import Header from './components/Header';
+import Settings from './components/Settings';
 import sortColor from "./functions/sortColor";
 import './app.css';
 
@@ -247,6 +248,11 @@ class App extends React.Component {
                       <Doit
                           scida={this.state}
                           onChangeDay={this.changeDay}
+                      />
+                  </Route>
+                  <Route path='/Archive'>
+                      <Archive
+                          scida={this.state}
                       />
                   </Route>
                   <Route path='/Settings'>
