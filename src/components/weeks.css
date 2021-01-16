@@ -7,6 +7,7 @@
     font-size: 2rem;
     border: var(--base-border);
     background: var(--high-color);
+    box-shadow: var(--main-shadow);
 }
 
 .items-list-item {

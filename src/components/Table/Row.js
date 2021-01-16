@@ -67,7 +67,7 @@ class Row extends React.Component {
                     {this.props.text}
                 </td>
                 <td className={'main-cell week-item-number'
-                    + (this.state.tooHigh ? ' week-number-arrow-down' : this.state.tooLow ? ' week-number-arrow-up' : '')}>
+                    + (this.props.type && (this.state.tooHigh ? ' week-number-arrow-down' : this.state.tooLow ? ' week-number-arrow-up' : ''))}>
                     {this.state.cutNum}
                 </td>
                 {this.props.todo.map((day, i) =>
