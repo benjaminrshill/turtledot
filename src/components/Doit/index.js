@@ -23,7 +23,7 @@ class Doit extends React.Component {
                     weekName={'Last Week'}
                     editable={false}
                     scida={this.props.scida}
-                    weekBeginning={this.props.scida.thisWeekBeginning} // REMEMBER TO CHANGE TO LAST WEEK BEGINNING!
+                    weekBeginning={this.props.scida.lastWeekBeginning}
                 />
             </main>
         );
