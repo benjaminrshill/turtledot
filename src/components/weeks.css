@@ -35,7 +35,8 @@ tr {
 
 td {
     font-size: 3rem;
-    border: var(--main-border);
+    border: var(--base-border);
+    box-shadow: var(--main-shadow);
 }
 
 .main-cell {

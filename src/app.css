@@ -1,3 +1,17 @@
+.bgPanel {
+  z-index: -1;
+  position: fixed;
+  width: 80vw;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  opacity: 0.3;
+  box-shadow: var(--main-shadow);
+}
+
 h1 {
   margin: 2rem;
   font-size: 4rem;
@@ -25,14 +39,19 @@ button {
   font-size: 3rem;
   padding: 0;
   background: var(--high-color);
-  border: var(--main-border);
+  border: var(--base-border);
   border-radius: 100%;
+  box-shadow: var(--main-shadow);
 }
 
 button.plus-sign {
   font-size: 5rem;
   font-weight: 300;
   line-height: 0;
+}
+
+button.add {
+  margin: 2vh auto;
 }
 
 button.delete, .delete {

@@ -224,6 +224,7 @@ class App extends React.Component {
       return (
           <Router basename={process.env.PUBLIC_URL}>
               <Header />
+              <div className='bgPanel'></div>
               <Switch>
                   <Route path='/Items'>
                       <Items

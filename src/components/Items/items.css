@@ -14,7 +14,7 @@
     line-height: 5rem;
     padding: 0;
     background: var(--high-color);
-    border: var(--main-border);
+    border: var(--base-border);
 }
 
 .item .text {
@@ -25,7 +25,8 @@
     text-align: left;
     padding: 0 0 0 5px;
     background: var(--high-color);
-    border: var(--main-border);
+    border: var(--base-border);
+    box-shadow: var(--main-shadow);
 }
 
 .item .number {
@@ -48,7 +49,7 @@ button.delete {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    background: var(--line-color);
+    background: var(--high-color);
     padding: 0.5rem;
 }
 
