@@ -37,6 +37,8 @@ class Archive extends React.Component {
                     editable={false}
                     scida={this.props.scida}
                     weekBeginning={week.date}
+                    week={week}
+                    archive={true}
                 />
                 )}
             </main>

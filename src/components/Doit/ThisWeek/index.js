@@ -108,7 +108,22 @@ class ThisWeek extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.items.map((item, i) =>
+                        {this.props.archive ? this.props.week.items.map((item, i) =>
+                            <DoRow
+                                key={item.id + this.props.weekBeginning}
+                                id={item.id}
+                                index={i}
+                                text={item.text}
+                                type={item.type}
+                                number={item.number}
+                                color={item.color}
+                                todo={item.todo}
+                                weekBeginning={this.props.weekBeginning}
+                                onDoDay={this.props.editable ? this.doDay : undefined}
+                            />
+                        )
+                        :
+                        this.state.items.map((item, i) =>
                             <DoRow
                                 key={item.id + this.props.weekBeginning}
                                 id={item.id}
