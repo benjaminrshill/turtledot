@@ -39,7 +39,7 @@ class ThisWeek extends React.Component {
         if (localStorage.getItem('archive')) {
             archive = JSON.parse(localStorage.getItem('archive'));
             let index = archive.findIndex(week => week.date === this.props.scida.thisWeekBeginning);
-            if (index !== null) {
+            if (index !== -1) {
                 archive[index] = lastWeek;
             } else {
                 archive.unshift(lastWeek);

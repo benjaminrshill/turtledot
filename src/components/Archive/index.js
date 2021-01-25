@@ -34,11 +34,11 @@ class Archive extends React.Component {
                 <ThisWeek
                     key={'archiveWeek' + i}
                     weekName={''}
-                    editable={false}
                     scida={this.props.scida}
                     weekBeginning={week.date}
                     week={week}
                     archive={true}
+                    editable={false}
                 />
                 )}
             </main>
