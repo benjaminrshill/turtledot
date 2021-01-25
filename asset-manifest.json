@@ -1,13 +1,15 @@
 {
   "files": {
     "main.css": "/turtledot/static/css/main.31a3d5a7.chunk.css",
-    "main.js": "/turtledot/static/js/main.02785484.chunk.js",
-    "main.js.map": "/turtledot/static/js/main.02785484.chunk.js.map",
+    "main.js": "/turtledot/static/js/main.8c74d0c4.chunk.js",
+    "main.js.map": "/turtledot/static/js/main.8c74d0c4.chunk.js.map",
     "runtime-main.js": "/turtledot/static/js/runtime-main.38018f10.js",
     "runtime-main.js.map": "/turtledot/static/js/runtime-main.38018f10.js.map",
     "static/js/2.84ae7933.chunk.js": "/turtledot/static/js/2.84ae7933.chunk.js",
     "static/js/2.84ae7933.chunk.js.map": "/turtledot/static/js/2.84ae7933.chunk.js.map",
     "index.html": "/turtledot/index.html",
+    "service-worker.js": "/turtledot/service-worker.js",
+    "service-worker.js.map": "/turtledot/service-worker.js.map",
     "static/css/main.31a3d5a7.chunk.css.map": "/turtledot/static/css/main.31a3d5a7.chunk.css.map",
     "static/js/2.84ae7933.chunk.js.LICENSE.txt": "/turtledot/static/js/2.84ae7933.chunk.js.LICENSE.txt",
     "static/media/weeks.css": "/turtledot/static/media/arrowUp.db38afd6.svg",
@@ -17,6 +19,6 @@
     "static/js/runtime-main.38018f10.js",
     "static/js/2.84ae7933.chunk.js",
     "static/css/main.31a3d5a7.chunk.css",
-    "static/js/main.02785484.chunk.js"
+    "static/js/main.8c74d0c4.chunk.js"
   ]
 }
