@@ -8,9 +8,14 @@ class Item extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            editing: false
+            editing: false,
+            inUse: false
         };
         this.cutNumber = cutNumber.bind(this);
+    }
+
+    componentDidMount = () => {
+        this.checkInUse();
     }
 
     componentDidUpdate = (prevProps, prevState, snapshot) => {
@@ -41,6 +46,19 @@ class Item extends React.Component {
         this.setState({
             editing: false
         });
+    }
+
+    checkInUse = () => {
+        if (localStorage.getItem('weeks')) {
+            const weeks = JSON.parse(localStorage.getItem('weeks'));
+            weeks.forEach(week => {
+                if (week.items.find(item => item[0] === this.props.id)) {
+                    this.setState({
+                        inUse: true
+                    });
+                }
+            });
+        }
     }
 
     render() {
@@ -77,10 +95,10 @@ class Item extends React.Component {
                     <button
                         onClick={this.startEdit}
                         className={'color ' + this.props.color}>
-
                     </button>
                     <button
                         value={this.props.id}
+                        disabled={this.state.inUse}
                         onClick={this.props.onDeleteItem}
                         className='plus-sign delete'>
                         +
