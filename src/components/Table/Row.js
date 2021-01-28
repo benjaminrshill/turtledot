@@ -78,7 +78,7 @@ class Row extends React.Component {
                         data-week={this.props.weekBeginning}
                         onClick={day < 100 ? this.props.onChangeDay : undefined}
                         className='main-cell week-spots'>
-                        <div className={this.props.type ? 'spot' + (day > 0 ? ' grey' : '') : 'type-cell grey'}>
+                        <div className={this.props.type ? 'spot grey' + (day === 100 ? ' closed' : day === 1 ? ' open' : '') : 'type-cell grey'}>
                             {!this.props.type && day > 0 ? this.state.goalNum : ''}
                         </div>
                     </td>

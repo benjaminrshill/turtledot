@@ -9,6 +9,7 @@ export default function DoRow(props) {
     let countedNumber = 0;
     props.todo.forEach(day => day > 0 ? countedNumber++ : null);
     const goalNum = cutNumber(props.number / countedNumber);
+    const today = new Date().getDay() - 1;
 
     return (
         <tr
@@ -29,7 +30,7 @@ export default function DoRow(props) {
                     data-day={i}
                     data-week={props.weekBeginning}
                     onClick={props.onDoDay}
-                    className={'main-cell week-spots' + (day === 100 ? props.color : '')}>
+                    className={'main-cell week-spots' + (today === i ? props.color : '')}>
                     <div
                         className={props.type ?
                             ('spot' + (day === 100 ? ' closed' : day === 1 ? ' open' : ''))
