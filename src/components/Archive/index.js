@@ -20,7 +20,7 @@ export default function Archive(props) {
             {archive.map((week, i) =>
             <ThisWeek
                 key={'archiveWeek' + i}
-                weekName={week.date === props.scida.thisWeekBeginning ? 'This Week' : props.scida.lastWeekBeginning ? 'Last Week' : ''}
+                weekName={''}
                 scida={props.scida}
                 weekBeginning={week.date}
                 week={week}
