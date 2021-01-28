@@ -30,7 +30,7 @@ export default function DoRow(props) {
                     data-day={i}
                     data-week={props.weekBeginning}
                     onClick={props.onDoDay}
-                    className={'main-cell week-spots' + (today === i ? props.color : '')}>
+                    className={'main-cell week-spots' + (!props.archive && today === i ? props.color : '')}>
                     <div
                         className={props.type ?
                             ('spot' + (day === 100 ? ' closed' : day === 1 ? ' open' : ''))

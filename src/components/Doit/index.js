@@ -18,13 +18,6 @@ class Doit extends React.Component {
                     weekBeginning={this.props.scida.thisWeekBeginning}
                     onChangeDay={this.props.onChangeDay}
                 />
-                <ThisWeek
-                    key={'lastWeek'}
-                    weekName={'Last Week'}
-                    editable={false}
-                    scida={this.props.scida}
-                    weekBeginning={this.props.scida.lastWeekBeginning}
-                />
             </main>
         );
     }

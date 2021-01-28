@@ -119,6 +119,7 @@ class ThisWeek extends React.Component {
                                 color={item.color}
                                 todo={item.todo}
                                 weekBeginning={this.props.weekBeginning}
+                                archive={true}
                                 onDoDay={this.props.editable ? this.doDay : undefined}
                             />
                         )
@@ -134,6 +135,7 @@ class ThisWeek extends React.Component {
                                 color={item.color}
                                 todo={item.todo}
                                 weekBeginning={this.props.weekBeginning}
+                                archive={false}
                                 onDoDay={this.props.editable ? this.doDay : undefined}
                             />
                         )}

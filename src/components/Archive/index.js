@@ -2,48 +2,32 @@ import React from 'react';
 import ThisWeek from "../Doit/ThisWeek";
 import '../weeks.css';
 
-class Archive extends React.Component {
+export default function Archive(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            archive: []
-        };
-    }
+    const archive = getArchive();
 
-    componentDidMount = () => {
-        this.getArchive();
-    }
-
-    getArchive = () => {
+    function getArchive() {
         if (localStorage.getItem('archive')) {
-            let archive = JSON.parse(localStorage.getItem('archive'));
-            this.setState({
-                archive: [...archive]
-            });
+            return JSON.parse(localStorage.getItem('archive'));
         }
     }
 
-    render() {
-        return (
-            <main id='arrange'>
-                <h1>
-                    Archive
-                </h1>
-                {this.state.archive.map((week, i) =>
-                <ThisWeek
-                    key={'archiveWeek' + i}
-                    weekName={''}
-                    scida={this.props.scida}
-                    weekBeginning={week.date}
-                    week={week}
-                    archive={true}
-                    editable={false}
-                />
-                )}
-            </main>
-        );
-    }
+    return (
+        <main id='arrange'>
+            <h1>
+                Archive
+            </h1>
+            {archive.map((week, i) =>
+            <ThisWeek
+                key={'archiveWeek' + i}
+                weekName={week.date === props.scida.thisWeekBeginning ? 'This Week' : props.scida.lastWeekBeginning ? 'Last Week' : ''}
+                scida={props.scida}
+                weekBeginning={week.date}
+                week={week}
+                archive={true}
+                editable={false}
+            />
+            )}
+        </main>
+    );
 }
-
-export default Archive;
