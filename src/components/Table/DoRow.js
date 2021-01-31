@@ -9,7 +9,8 @@ export default function DoRow(props) {
     let countedNumber = 0;
     props.todo.forEach(day => day > 0 ? countedNumber++ : null);
     const goalNum = cutNumber(props.number / countedNumber);
-    const today = new Date().getDay() - 1;
+    const originalDay = new Date().getDay();
+    const today = originalDay === 0 ? 6 : originalDay - 1;
 
     return (
         <tr
