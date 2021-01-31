@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/turtledot/static/css/main.af1418a4.chunk.css",
-    "main.js": "/turtledot/static/js/main.b5ac7a5d.chunk.js",
-    "main.js.map": "/turtledot/static/js/main.b5ac7a5d.chunk.js.map",
+    "main.css": "/turtledot/static/css/main.b3a459db.chunk.css",
+    "main.js": "/turtledot/static/js/main.46a0d1cf.chunk.js",
+    "main.js.map": "/turtledot/static/js/main.46a0d1cf.chunk.js.map",
     "runtime-main.js": "/turtledot/static/js/runtime-main.38018f10.js",
     "runtime-main.js.map": "/turtledot/static/js/runtime-main.38018f10.js.map",
     "static/js/2.277401cf.chunk.js": "/turtledot/static/js/2.277401cf.chunk.js",
@@ -10,7 +10,7 @@
     "index.html": "/turtledot/index.html",
     "service-worker.js": "/turtledot/service-worker.js",
     "service-worker.js.map": "/turtledot/service-worker.js.map",
-    "static/css/main.af1418a4.chunk.css.map": "/turtledot/static/css/main.af1418a4.chunk.css.map",
+    "static/css/main.b3a459db.chunk.css.map": "/turtledot/static/css/main.b3a459db.chunk.css.map",
     "static/js/2.277401cf.chunk.js.LICENSE.txt": "/turtledot/static/js/2.277401cf.chunk.js.LICENSE.txt",
     "static/media/weeks.css": "/turtledot/static/media/arrowUp.db38afd6.svg",
     "static/media/turtledot.2097928d.svg": "/turtledot/static/media/turtledot.2097928d.svg"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.38018f10.js",
     "static/js/2.277401cf.chunk.js",
-    "static/css/main.af1418a4.chunk.css",
-    "static/js/main.b5ac7a5d.chunk.js"
+    "static/css/main.b3a459db.chunk.css",
+    "static/js/main.46a0d1cf.chunk.js"
   ]
 }
